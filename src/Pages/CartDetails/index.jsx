@@ -47,7 +47,7 @@ const CartDetails = () => {
 
   return (
     <Fragment>
-      <Banner title="Pasenger Details" />
+      <Banner title="Passenger Details" />
       <div className="container-fluid contact py-5">
         <div className="container py-5">
           <div className="flex justify-end mt-5 mb-5 ">

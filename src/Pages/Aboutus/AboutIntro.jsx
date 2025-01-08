@@ -11,9 +11,10 @@ const AboutIntro = () => {
               <div className="about-item">
                 <div className="pb-5">
                   <h1 className="display-5 text-capitalize">
-                    Travel Pack 365 <span className="text-primary">About</span>
+                     <span className="text-primary">About </span>
+                     Travel Pack 365
                   </h1>
-                  <p className="mb-0">
+                  <p className="text-md text-justify font-semibold">
                     Welcome to Travelpack 365, the leading travel agency in the
                     UAE with a legacy of excellence and decades of experience.
                     We specialize in crafting unforgettable travel experiences
@@ -24,7 +25,7 @@ const AboutIntro = () => {
                   </p>
                 </div>
                 <div className="row g-4">
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 ">
                     <div className="about-item-inner border p-4">
                       <div className="about-icon mb-4">
                         <img
@@ -34,8 +35,8 @@ const AboutIntro = () => {
                           loading="lazy"
                         />
                       </div>
-                      <h5 className="mb-3">Our Vision</h5>
-                      <p className="mb-0">
+                      <h5 className="mb-3 font-bold text-md">Our Vision</h5>
+                      <p className="py-3 font-serif text-balance">
                         Our vision is to be the foremost travel agency in the
                         UAE, renowned for creating exceptional and personalized
                         travel experiences. We aim to inspire and connect people
@@ -44,7 +45,7 @@ const AboutIntro = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 ">
                     <div className="about-item-inner border p-4">
                       <div className="about-icon mb-4">
                         <img
@@ -54,8 +55,8 @@ const AboutIntro = () => {
                           loading="lazy"
                         />
                       </div>
-                      <h5 className="mb-3">Our Mision</h5>
-                      <p className="mb-0">
+                      <h5 className="pb-3 font-bold text-md">Our Mission</h5>
+                      <p className="mb-0 font-serif text-balance ">
                         Our mission is to provide unparalleled travel
                         experiences by offering expert guidance, personalized
                         service, and innovative solutions. We strive to exceed
@@ -66,7 +67,7 @@ const AboutIntro = () => {
                     </div>
                   </div>
                 </div>
-                <p className="text-item my-4">
+                <p className="text-item my-4 font-black text-pretty">
                   At TP 365, we are committed to delivering unparalleled service
                   and personalized travel solutions. Whether you're dreaming of
                   a luxurious escape, a thrilling adventure, or a peaceful
@@ -78,10 +79,10 @@ const AboutIntro = () => {
                   <div className="col-lg-6">
                     <div className="text-center rounded bg-secondary p-4">
                       <h1 className="display-6 text-white">25</h1>
-                      <h5 className="text-light mb-0">Years Of Experience</h5>
+                      <h5 className="text-light font-bold ">Years Of Experience</h5>
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  {/* <div className="col-lg-6 font-bold text-start  flex justify-center items-center">
                     <div className="rounded">
                       <p className="mb-2">
                         <i className="fa fa-check-circle text-primary me-1" />{" "}
@@ -100,7 +101,7 @@ const AboutIntro = () => {
                         dio aenean sed adipiscing
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                   {/* <div className="col-lg-5 d-flex align-items-center">
                     <a href="#" className="btn btn-primary rounded py-3 px-5">
                       More About Us
@@ -125,8 +126,8 @@ const AboutIntro = () => {
               </div>
             </div>
             <div className="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
-              <div className="about-img">
-                <div className="img-1">
+              <div className="">
+                <div className=" ">
                   <img
                     src="img/about1.jpeg"
                     className="img-fluid rounded h-100 w-100"
@@ -134,14 +135,14 @@ const AboutIntro = () => {
                     loading="lazy"
                   />
                 </div>
-                <div className="img-2">
+                {/* <div className="img-2">
                   <img
                     src="img/about2.jpeg"
                     className="img-fluid rounded w-100"
                     alt="travelpack365"
                     loading="lazy"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

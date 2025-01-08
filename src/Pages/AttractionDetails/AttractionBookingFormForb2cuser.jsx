@@ -509,6 +509,9 @@ const AttractionBookingFormForb2cuser = (props) => {
     setshowMofCartModel(false);
   };
 
+  // function handleCheckout()
+  // {}
+
   const isResourceOrAttIdMatched =
     (formData?.resourceID != null && formData?.resourceID != 0) || attId == 147;
 

@@ -125,9 +125,9 @@ const OtpVerificationForm = () => {
             {/* Content inside the centered circle */}
           </div>
           <div className="w-full p-1 text-xl text-center md:text-3xl font-Kanit800 text-primaryColor">
-            <div>Otp Verification</div>
+            <div>OTP Verification</div>
 
-            <span className="text-msm">OTP Recived Your Email </span>
+            <span className="text-sm">Check Your Email </span>
           </div>
           <div>
             {alertVisible && (
@@ -145,7 +145,7 @@ const OtpVerificationForm = () => {
           <form>
             <div className="mt-2">
               <TextInput
-                placeholder="Enter Otp"
+                placeholder="Enter OTP"
                 name="otp"
                 value={formData.otp}
                 onChange={handleInputChange}

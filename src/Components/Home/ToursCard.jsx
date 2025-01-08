@@ -9,7 +9,7 @@ const ToursCard = (props) => {
   return (
     <Fragment>
       <div
-        className="cursor-pointer relative  p-2  min-h-80 rounded-md  hover:scale-105 "
+        className="cursor-pointer  relative  p-2  min-h-80 rounded-md  hover:scale-105 "
         style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
         onClick={() => navigate(`/tourpackages-details/${item?.tourPackageId}`)}
       >
