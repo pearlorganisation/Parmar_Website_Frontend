@@ -1,43 +1,47 @@
 import React, { Fragment, useState, useEffect } from "react";
 
 import AttractionCard from "../../Components/Home/AttractionCard";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const filtersForQuery = [
   {
     title: "Tickets",
-    url:"/img/Two Tickets.svg"
+    url: "/img/Two Tickets.svg",
   },
   {
     title: "Combos",
-    url:"/img/Two Tickets.svg"
+    url: "/img/Two Tickets.svg",
   },
   {
     title: "Theme Parks",
-    url:"/img/Roller Coaster.svg"
+    url: "/img/Roller Coaster.svg",
   },
   {
     title: "Tours",
-    url:"/img/Tour Guide.svg"
+    url: "/img/Tour Guide.svg",
   },
   {
     title: "Zoos",
-    url:"/img/Elephant.svg"
+    url: "/img/Elephant.svg",
   },
   {
     title: "Water Parks",
-    url:"/img/Outdoor Swimming Pool.svg"
+    url: "/img/Outdoor Swimming Pool.svg",
   },
   {
     title: "Museum",
-    url:"/img/Museum.svg"
+    url: "/img/Museum.svg",
   },
   {
     title: "Landmarks",
-    url:"/img/Frame 603.svg"
+    url: "/img/Frame 603.svg",
   },
-
-
-
 ];
 
 const AttractionList = (props) => {
@@ -104,21 +108,27 @@ const AttractionList = (props) => {
           </div>
         </div>
 
-{/* static query filters  */}
-<div className=" grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 md:gap-0  justify-between  md:px-20 pb-16">
-{
-  filtersForQuery.map((el)=>{
-    return <div className="border-1  flex py-2 px-3 md:px-3 sm:px-2 hover:scale-105 items-center  hover:border-[#C3F1F5] rounded-md justify-between " style={{boxShadow:"rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em"}}>
-        <div className="flex justify-center items-center">
-          <img src={el.url} alt="" srcset="" />
+        {/* static query filters  */}
+        <div className=" grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 md:gap-0  justify-between  md:px-20 pb-16">
+          {filtersForQuery.map((el) => {
+            return (
+              <div
+                className="border-1  flex py-2 px-3 md:px-3 sm:px-2 hover:scale-105 items-center  hover:border-[#C3F1F5] rounded-md justify-between "
+                style={{
+                  boxShadow:
+                    "rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em",
+                }}
+              >
+                <div className="flex justify-center items-center">
+                  <img src={el.url} alt="" srcset="" />
+                </div>
+                <p className="font-sans text-black text-sm md:text-md ">
+                  {el.title}
+                </p>
+              </div>
+            );
+          })}
         </div>
-        <p className="font-sans text-black text-sm md:text-md ">
-          {el.title}
-        </p>
-       </div>
-  })
-}
-</div>
 
         <div className="container pb-5">
           <div
@@ -129,22 +139,51 @@ const AttractionList = (props) => {
             <h1 className="display-5 text-capitalize mb-3">
               Our <span className="text-primary">Attractions</span>
             </h1>
-            <p className="mb-0 text-sm md:text-lg font-serif text-justify md:text-center">{introduction}</p>
+            <p className="mb-0 text-sm md:text-lg font-serif text-justify md:text-center">
+              {introduction}
+            </p>
           </div>
         </div>
 
-        <div class="container-fluid categories pb-5">
-          <div class="container pb-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-              {filterAttractions &&
-                filterAttractions.slice(0, 8).map((item, index) => (
-                  <div className=" mb-2" key={index}>
-                    <AttractionCard item={item} currRate={currRate} />
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div>
+        <div >
+  <div className="container   ">
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={10}
+        pagination={{
+          clickable: true,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+        {filterAttractions &&
+          filterAttractions.slice(0, 8).map((item, index) => {
+            return ( <SwiperSlide key={index} className=" px-3  py-8 md:p-10  ">
+                <div className="flex justify-center items-center">
+               <AttractionCard item={item} currRate={currRate} />
+                </div>
+              
+            </SwiperSlide>);
+          })}
+      </Swiper>
+    {/* </div> */}
+  </div>
+</div>
+
       </div>
     </Fragment>
   );

@@ -446,7 +446,7 @@ const AttractionBookingFormForb2cuser = (props) => {
       } else {
         try {
           const response = await instance.post("setCartInfo", submitData);
-          if (window.dataLayer) {
+          if (window.dataLayer) {  
             window.dataLayer.push({ ecommerce: null }); // Clear the previous ecommerce object.
             window.dataLayer.push({
               event: "add_to_cart",

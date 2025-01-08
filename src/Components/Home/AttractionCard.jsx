@@ -13,7 +13,7 @@ const AttractionCard = (props) => {
     <Fragment>
       <div
       style={{boxShadow:" rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset"}}
-        className="cursor-pointer h-80 rounded-t-md overflow-hidden rounded-b-2xl   flex items-center gap-4 flex-col"
+        className="cursor-pointer hover:scale-105 h-80 w-60 rounded-t-md overflow-hidden rounded-b-2xl   flex items-center gap-4 flex-col"
         onClick={() => navigate(`/attraction-details/${item?.attUniqueId}`)}
       >
         <img
@@ -23,7 +23,7 @@ const AttractionCard = (props) => {
           loading="lazy"
         />
 
-        <div  className=" p-2 bg-white h-full  flex flex-col justify-center  ">
+        <div  className="px-1  bg-white h-full  flex flex-col justify-start  items-start ">
         <div className=" ">
           {" "}
           <h4 className="font-bold">{item?.attName}</h4>
@@ -52,7 +52,7 @@ const AttractionCard = (props) => {
                     : item.gwtB2cAdultPrice
                 ).toFixed(2)}
 
-            <span className="text-[10px]"> {currentCurrency.currency}</span>
+            <span className="text-base"> {currentCurrency.currency}</span>
           </div>
         </div>
         </div>
