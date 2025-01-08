@@ -515,7 +515,7 @@ const AttractionDetails = () => {
                 </h3>
                 <Slider {...settings}>
                   {attList?.map((item, index) => (
-                    <div key={index} className="px-5">
+                    <div key={index} className="p-10">
                       <AttractionCard item={item} />
                     </div>
                   ))}

@@ -16,7 +16,7 @@ const ToursList = (props) => {
             <h1 className="display-5 text-capitalize mb-3">
               Our<span className="text-primary"> Tour Packages </span>
             </h1>
-            <p className="mb-0">{introduction}</p>
+            <p className="mb-0 ">{introduction}</p>
           </div>
 
           <div class="container-fluid categories pb-5">
