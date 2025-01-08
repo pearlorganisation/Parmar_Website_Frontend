@@ -8,6 +8,7 @@ const AttractionCard = (props) => {
   const { item, currRate } = props;
   const currentCurrency = useSelector((state) => state.authData);
   const loginData = useSelector((state) => state.authData);
+  
   return (
     <Fragment>
       <div
