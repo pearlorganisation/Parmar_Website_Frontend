@@ -157,7 +157,7 @@ const HeaderComponent = () => {
       {/* Topbar End */}
 
       {/* Navbar & Hero Start */}
-      <div className="container-fluid  nav-bar sticky-top px-0 px-lg-4 py-2 py-lg-0 z-[99] bg-white shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] backdrop-blur-lg rounded-b-lg border-b border-[#0AACBB] border-white/20" >
+      <div className="container-fluid  nav-bar sticky-top px-0 px-lg-4 py-2 py-lg-0 z-[99] bg-white shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] backdrop-blur-lg rounded-b-lg border-b  border-[#0AACBB] border-white/20">
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light">
             <Link to="/" className="navbar-brand p-0">
@@ -215,7 +215,9 @@ const HeaderComponent = () => {
                   }`}
                   onClick={closeMobileMenu}
                 >
-                  <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">Home</p>
+                  <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">
+                    Home
+                  </p>
                 </Link>
                 <Link
                   to="about-us"
@@ -224,7 +226,9 @@ const HeaderComponent = () => {
                   }`}
                   onClick={closeMobileMenu}
                 >
-                <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">About Us</p>
+                  <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">
+                    About Us
+                  </p>
                 </Link>
                 <Link
                   to="attraction-list"
@@ -233,8 +237,9 @@ const HeaderComponent = () => {
                   }`}
                   onClick={closeMobileMenu}
                 >
-                  <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">Attractions</p>
-
+                  <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">
+                    Attractions
+                  </p>
                 </Link>
                 <Link
                   to="combopack-list"
@@ -243,8 +248,9 @@ const HeaderComponent = () => {
                   }`}
                   onClick={closeMobileMenu}
                 >
-                                  <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">Combo Packs</p>
-
+                  <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">
+                    Combo Packs
+                  </p>
                 </Link>
                 <Link
                   to="tourpackages-list"
@@ -253,8 +259,9 @@ const HeaderComponent = () => {
                   }`}
                   onClick={closeMobileMenu}
                 >
-                <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">Holiday Pack</p>
-
+                  <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">
+                    Holiday Pack
+                  </p>
                 </Link>
                 <Link
                   to="contact-us"
@@ -263,8 +270,9 @@ const HeaderComponent = () => {
                   }`}
                   onClick={closeMobileMenu}
                 >
-                <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">Contact</p>
-
+                  <p className="text-[#0AACBB] font-semibold  text-lg hover:text-[#52d6e2]">
+                    Contact
+                  </p>
                 </Link>
               </div>
 
