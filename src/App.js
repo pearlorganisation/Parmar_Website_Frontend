@@ -38,13 +38,7 @@ import {
 } from "./Pages";
 import { instance } from "./Components/Others/AxiosInstance";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
-function 
-
-
-
-
-
-App() {
+function App() {
   useEffect(() => {
     const getFingerprint = async () => {
       const fp = await FingerprintJS.load();
