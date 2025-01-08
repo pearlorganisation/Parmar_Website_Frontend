@@ -372,13 +372,13 @@ hr.solid {
 }
 
 .swiper-pagination-bullet {
-  width: 32px !important; /* Increase width */
-  height: 32px !important; /* Increase height */
+  width: 16px !important; /* Increase width */
+  height: 16px !important; /* Increase height */
   background-color: rgba(255, 255, 255, 0.8) !important; /* Adjust color */
-  opacity: 1; /* Ensure visible */
+  opacity: 1 !important; /* Ensure visible */
 }
 
 .swiper-pagination-bullet-active {
-  background-color: white; /* Highlight active dot */
-  transform: scale(1.2); /* Slightly enlarge the active dot */
+  background-color: blue !important; /* Highlight active dot */
+  transform: scale(1.2) !important; /* Slightly enlarge the active dot */
 }

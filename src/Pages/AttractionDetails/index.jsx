@@ -42,7 +42,7 @@ const AttractionDetails = () => {
     dots: false,
     infinite: true,
     speed: 2000,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     // rtl: true,
 
