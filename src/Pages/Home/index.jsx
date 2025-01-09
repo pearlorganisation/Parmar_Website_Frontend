@@ -79,8 +79,7 @@ const Home = () => {
   return (
     <Fragment>
       <div className="relative">
-        <Herosection />
-        {/* <HeroSection2 /> */}
+        <HeroSection2 />
         <div className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center w-full px-4">
           <div className="w-full md:px-44"></div>
         </div>

@@ -185,8 +185,8 @@ function App() {
             path="/attraction-details/:id"
             element={<AttractionDetails />}
           />
-          {/* <Route path="/combopack-list" element={<CombopackList />} />
-          <Route path="/combopack-details/:id" element={<ComboDetails />} /> */}
+          <Route path="/combopack-list" element={<CombopackList />} />
+          <Route path="/combopack-details/:id" element={<ComboDetails />} />
           <Route path="/tourpackages-list" element={<ToursList />} />
           <Route path="/tourpackages-details/:id" element={<TourDetails />} />
           <Route path="/cart-details" element={<CartDetails />} />

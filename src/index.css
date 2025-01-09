@@ -370,3 +370,15 @@ hr.solid {
 .custom-swiper-button-next:active {
   transform: translateY(-50%) scale(0.95);
 }
+
+.swiper-pagination-bullet {
+  width: 16px !important; /* Increase width */
+  height: 16px !important; /* Increase height */
+  background-color: rgba(255, 255, 255, 0.8) !important; /* Adjust color */
+  opacity: 1 !important; /* Ensure visible */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: blue !important; /* Highlight active dot */
+  transform: scale(1.2) !important; /* Slightly enlarge the active dot */
+}

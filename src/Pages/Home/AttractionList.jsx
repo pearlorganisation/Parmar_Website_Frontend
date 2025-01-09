@@ -1,13 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 
 import AttractionCard from "../../Components/Home/AttractionCard";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
 const filtersForQuery = [
   {
@@ -51,6 +51,9 @@ const AttractionList = (props) => {
 
   const [searchKey, setSearchKey] = useState("");
 
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
   useEffect(() => {
     applyFilter();
   }, [searchKey, attList]);
@@ -72,6 +75,11 @@ const AttractionList = (props) => {
     );
 
     setFilterAttractions(updatedList);
+  };
+
+  const handleFilterClick = (title) => {
+    searchParams.set("attraction", title); // Set the search parameter
+    navigate({ search: searchParams.toString() }); // Update the URL
   };
 
   return (
@@ -109,11 +117,15 @@ const AttractionList = (props) => {
         </div>
 
         {/* static query filters  */}
-        <div className=" grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 md:gap-0  justify-between  md:px-20 pb-16">
+        <div className=" grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 md:gap-0  justify-between md:px-20 pb-16">
           {filtersForQuery.map((el) => {
             return (
               <div
-                className="border-1  flex py-2 px-3 md:px-3 sm:px-2 hover:scale-105 items-center  hover:border-[#C3F1F5] rounded-md justify-between "
+                // onClick={() => {
+                //   alert(`${el.title} Clicked  `);
+                // }}
+                onClick={() => handleFilterClick(el.title)}
+                className="border-1  flex py-2 px-3 md:px-3 sm:px-2 hover:scale-105 items-center hover:cursor-pointer border-blue-500  hover:border-[#C3F1F5] rounded-md justify-between "
                 style={{
                   boxShadow:
                     "rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em",
@@ -137,7 +149,7 @@ const AttractionList = (props) => {
             style={{ maxWidth: 800 }}
           >
             <h1 className="display-5 text-capitalize mb-3">
-              Our <span className="text-primary">Attractions</span>
+              Our <span className="text-primary">Attractions </span>
             </h1>
             <p className="mb-0 text-sm md:text-lg font-serif text-justify md:text-center">
               {introduction}
@@ -145,45 +157,80 @@ const AttractionList = (props) => {
           </div>
         </div>
 
-        <div >
-  <div className="container   ">
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={10}
-        pagination={{
-          clickable: true,
-        }}
-        breakpoints={{
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 15,
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-          },
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        {filterAttractions &&
-          filterAttractions.slice(0, 8).map((item, index) => {
-            return ( <SwiperSlide key={index} className=" px-3  py-8 md:p-10  ">
-                <div className="flex justify-center items-center">
-               <AttractionCard item={item} currRate={currRate} />
-                </div>
-              
-            </SwiperSlide>);
-          })}
-      </Swiper>
-    {/* </div> */}
-  </div>
-</div>
+        <div className="flex items-center justify-center relative">
+          <div className="w-[80%] ">
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={20}
+              navigation={{
+                nextEl: ".custom-swiper-button-next",
+                prevEl: ".custom-swiper-button-prev",
+              }}
+              modules={[Navigation, Pagination]}
+              pagination={{
+                clickable: true,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 1,
+                  spaceBetween: 10,
+                },
+                768: {
+                  slidesPerView: 3,
+                  spaceBetween: 15,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 25,
+                },
+              }}
+              className="mySwiper"
+            >
+              {filterAttractions &&
+                filterAttractions.slice(0, 8).map((item, index) => {
+                  return (
+                    <SwiperSlide key={index} className="">
+                      <div className="flex justify-center items-center w-full  mb-5">
+                        <AttractionCard item={item} currRate={currRate} />
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
+            </Swiper>
 
+            <button className="custom-swiper-button-prev absolute top-1/2 left-8 transform -translate-y-1/2 bg-black bg-opacity-50 rounded-full text-white  shadow-lg">
+              <svg
+                width="33"
+                height="51"
+                viewBox="0 0 33 51"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M29 47L7 23.0856L29 4"
+                  stroke="white"
+                  stroke-width="9"
+                />
+              </svg>
+            </button>
+            <button className="custom-swiper-button-next absolute top-1/2 right-8 transform -translate-y-1/2 bg-black bg-opacity-50 rounded-full text-white shadow-lg">
+              <svg
+                width="33"
+                height="51"
+                viewBox="0 0 33 51"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4 4L26 27.9144L4 47"
+                  stroke="white"
+                  stroke-width="9"
+                />
+              </svg>
+            </button>
+            {/* </div> */}
+          </div>
+        </div>
       </div>
     </Fragment>
   );

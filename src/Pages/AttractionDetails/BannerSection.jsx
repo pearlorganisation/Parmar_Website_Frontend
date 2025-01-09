@@ -55,160 +55,211 @@ const BannerSection = ({
   };
 
   return (
-    <div>
-      <div className="bg-white rounded-lg shadow-lg ">
-        {tempImageList && tempImageList.length > 0 ? (
-          <div className="h-56 md:h-[400px] lg:h-[400px]">
-            <div className="hidden md:block lg:block">
-              <div class="grid md:grid-cols-4 md:grid-rows-2 gap-4 md:h-[400px] lg:h-[400px">
-                <div class="md:col-span-2 md:row-span-2 relative overflow-hidden ">
-                  {/* <img
-                    src={imageUrl + tempImageList[0].fileName}
-                    class="object-cover w-full h-full"
-                  /> */}
+    // <div>
+    //   <div className="bg-white rounded-lg shadow-lg ">
+    //     {tempImageList && tempImageList.length > 0 ? (
+    //       <div className="h-56 md:h-[400px] lg:h-[400px] bg-pink-500">
+    //         <div className="hidden md:block lg:block">
+    //           <div class="grid md:grid-cols-4 md:grid-rows-2 gap-4 md:h-[400px] lg:h-[400px]">
+    //             <div class="md:col-span-2 md:row-span-2 relative overflow-hidden ">
+    //               {/* <img
+    //                 src={imageUrl + tempImageList[0].fileName}
+    //                 class="object-cover w-full h-full"
+    //               /> */}
 
-                  {/* <>
-                    {attVideo != null ? (
-                      <div className=" aspect-video">
-                        <iframe
-                          className="object-fill"
-                          width="100%"
-                          height="400px"
-                          src={`https://www.youtube.com/embed/${attVideo}?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&infinite=1&playlist=${attVideo}`}
-                          frameborder="0"
-                          loading="lazy"
+    //               {/* <>
+    //                 {attVideo != null ? (
+    //                   <div className=" aspect-video">
+    //                     <iframe
+    //                       className="object-fill"
+    //                       width="100%"
+    //                       height="400px"
+    //                       src={`https://www.youtube.com/embed/${attVideo}?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&infinite=1&playlist=${attVideo}`}
+    //                       frameborder="0"
+    //                       loading="lazy"
 
-                          // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        ></iframe>
-                      </div>
-                    ) : (
-                      <img
-                        src={imageurl + tempImageList[0].fileName}
-                        class="object-fill w-full h-full "
-                      />
-                    )}
-                  </> */}
+    //                       // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    //                     ></iframe>
+    //                   </div>
+    //                 ) : (
+    //                   <img
+    //                     src={imageurl + tempImageList[0].fileName}
+    //                     class="object-fill w-full h-full "
+    //                   />
+    //                 )}
+    //               </> */}
 
+    //               <img
+    //                 src={imageurl + tempImageList[0]?.fileName}
+    //                 class="object-fill w-full h-full "
+    //                 alt={name}
+    //                 loading="lazy"
+    //               />
+    //             </div>
+    //             <div class="md:col-span-1 relative overflow-hidden ">
+    //               <img
+    //                 src={imageurl + tempImageList[1]?.fileName}
+    //                 class="object-fill w-full h-full "
+    //                 alt={name}
+    //                 loading="lazy"
+    //               />
+    //             </div>
+    //             <div className="relative overflow-hidden md:col-span-1">
+    //               <img
+    //                 src={imageurl + tempImageList[2]?.fileName}
+    //                 className="object-fill w-full h-full"
+    //                 alt={name}
+    //                 loading="lazy"
+    //               />
+    //             </div>
+    //             <div className="relative overflow-hidden md:col-span-1">
+    //               <img
+    //                 src={imageurl + tempImageList[3]?.fileName}
+    //                 className="object-fill w-full h-full"
+    //                 alt={name}
+    //                 loading="lazy"
+    //               />
+    //             </div>
+    //             <div className="relative overflow-hidden md:col-span-1">
+    //               <img
+    //                 src={imageurl + tempImageList[4]?.fileName}
+    //                 className="object-fill w-full h-full"
+    //                 alt={name}
+    //                 loading="lazy"
+    //               />
+    //             </div>
+    //           </div>
+    //         </div>
+    //         <div className=" md:hidden lg:hidden">
+    //           {images && (
+    //             <Slider {...settings}>
+    //               {images
+    //                 .filter((item) => item.platformId === 2)
+    //                 .map((item, index) => (
+    //                   <div
+    //                     className="relative h-56 md:h-72 lg:h-72"
+    //                     key={index}
+    //                   >
+    //                     <img
+    //                       src={imageurl + item.fileName}
+    //                       height="100%"
+    //                       width="100%"
+    //                       className="object-fill object-center w-full h-full"
+    //                       alt={name}
+    //                       loading="lazy"
+    //                     />
+    //                   </div>
+    //                 ))}
+    //             </Slider>
+    //           )}
+    //         </div>
+    //       </div>
+    //     ) : (
+    //       <>
+    //         {/* {attVideo != null && (
+    //           <div className=" md:h-[400px] lg:h-[400px] ">
+    //             <div className=" aspect-video">
+    //               <iframe
+    //                 className="object-fill"
+    //                 width="100%"
+    //                 height="400px"
+    //                 src={`https://www.youtube.com/embed/${attVideo}?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&infinite=1&playlist=${attVideo}`}
+    //                 frameborder="0"
+    //                 loading="lazy"
+
+    //                 // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    //               ></iframe>
+    //             </div>
+    //           </div>
+    //         )} */}
+    //       </>
+    //     )}
+
+    //     <div className="items-center justify-between md:p-5 md:flex p-3">
+    //       <div className="flex justify-between ">
+    //         <div className="  border-gray-200 mb-3">
+    //           <h3 className="text-xl md:text-3xl text-capitalize font-extrabold">
+    //             {name}
+    //           </h3>
+    //         </div>
+    //       </div>
+    //       <div className="md:flex justify-between text-gray-500 md:justify-end font-Kanit800 md:space-x-10">
+    //         <div className="text-[13px] flex md:space-x-2 justify-between font-bold items-center">
+    //           <div> Starting Price</div>{" "}
+    //           <span>
+    //             <span className="font-extrabold text-3xl text-blue-900">
+    //               {currRate
+    //                 ? (Number(currRate) * Number(adultPrice)).toFixed(2)
+    //                 : Number(adultPrice).toFixed(2)}
+    //             </span>{" "}
+    //             {currentCurrency.currency}
+    //           </span>
+    //         </div>
+    //         {/* <div className=" text-[13px] flex md:space-x-2 justify-between font-bold items-center">
+    //           <div> Child Price</div>{" "}
+    //           <span>
+    //             <span className="font-extrabold  text-blue-900 text-3xl">
+    //               {currRate
+    //                 ? (Number(currRate) * Number(childPrice)).toFixed(2)
+    //                 : Number(childPrice).toFixed(2)}
+    //             </span>
+    //             {currentCurrency.currency}
+    //           </span>
+    //         </div> */}
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+
+    <div className="bg-white rounded-lg shadow-lg">
+      {tempImageList?.length > 0 ? (
+        <div>
+          {/* Small Screens - Slider */}
+          <div className="sm:block md:hidden">
+            <Slider {...settings}>
+              {tempImageList.map((image, index) => (
+                <div key={index} className="relative h-56">
                   <img
-                    src={imageurl + tempImageList[0]?.fileName}
-                    class="object-fill w-full h-full "
-                    alt={name}
+                    src={`${imageurl}${image?.fileName}`}
+                    className="object-cover w-full h-full"
+                    alt={name || `Image ${index + 1}`}
                     loading="lazy"
                   />
                 </div>
-                <div class="md:col-span-1 relative overflow-hidden ">
-                  <img
-                    src={imageurl + tempImageList[1]?.fileName}
-                    class="object-fill w-full h-full "
-                    alt={name}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="relative overflow-hidden md:col-span-1">
-                  <img
-                    src={imageurl + tempImageList[2]?.fileName}
-                    className="object-fill w-full h-full"
-                    alt={name}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="relative overflow-hidden md:col-span-1">
-                  <img
-                    src={imageurl + tempImageList[3]?.fileName}
-                    className="object-fill w-full h-full"
-                    alt={name}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="relative overflow-hidden md:col-span-1">
-                  <img
-                    src={imageurl + tempImageList[4]?.fileName}
-                    className="object-fill w-full h-full"
-                    alt={name}
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className=" md:hidden lg:hidden">
-              {images && (
-                <Slider {...settings}>
-                  {images
-                    .filter((item) => item.platformId === 2)
-                    .map((item, index) => (
-                      <div
-                        className="relative h-56 md:h-72 lg:h-72"
-                        key={index}
-                      >
-                        <img
-                          src={imageurl + item.fileName}
-                          height="100%"
-                          width="100%"
-                          className="object-fill object-center w-full h-full"
-                          alt={name}
-                          loading="lazy"
-                        />
-                      </div>
-                    ))}
-                </Slider>
-              )}
-            </div>
+              ))}
+            </Slider>
           </div>
-        ) : (
-          <>
-            {/* {attVideo != null && (
-              <div className=" md:h-[400px] lg:h-[400px] ">
-                <div className=" aspect-video">
-                  <iframe
-                    className="object-fill"
-                    width="100%"
-                    height="400px"
-                    src={`https://www.youtube.com/embed/${attVideo}?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&infinite=1&playlist=${attVideo}`}
-                    frameborder="0"
-                    loading="lazy"
 
-                    // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  ></iframe>
-                </div>
+          {/* Medium and Large Screens - Grid */}
+          <div className="hidden md:grid gap-2 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 h-auto">
+            {/* First Image - Larger span */}
+            <div className="relative overflow-hidden md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2">
+              <img
+                src={`${imageurl}${tempImageList[0]?.fileName}`}
+                className="object-cover w-full h-full"
+                alt={name || "Image"}
+                loading="lazy"
+              />
+            </div>
+            {/* Remaining Images */}
+            {tempImageList.slice(1, 5).map((image, index) => (
+              <div
+                key={index}
+                className="relative overflow-hidden md:col-span-1 lg:col-span-1 lg:row-span-1"
+              >
+                <img
+                  src={`${imageurl}${image?.fileName}`}
+                  className="object-cover w-full h-full"
+                  alt={name || `Image ${index + 2}`}
+                  loading="lazy"
+                />
               </div>
-            )} */}
-          </>
-        )}
-
-        <div className="items-center justify-between md:p-5 md:flex p-3">
-          <div className="flex justify-between ">
-            <div className="  border-gray-200 mb-3">
-              <h3 className="text-xl md:text-3xl text-capitalize font-extrabold">
-                {name}
-              </h3>
-            </div>
-          </div>
-          <div className="md:flex justify-between text-gray-500 md:justify-end font-Kanit800 md:space-x-10">
-            <div className="text-[13px] flex md:space-x-2 justify-between font-bold items-center">
-              <div> Starting Price</div>{" "}
-              <span>
-                <span className="font-extrabold text-3xl text-blue-900">
-                  {currRate
-                    ? (Number(currRate) * Number(adultPrice)).toFixed(2)
-                    : Number(adultPrice).toFixed(2)}
-                </span>{" "}
-                {currentCurrency.currency}
-              </span>
-            </div>
-            {/* <div className=" text-[13px] flex md:space-x-2 justify-between font-bold items-center">
-              <div> Child Price</div>{" "}
-              <span>
-                <span className="font-extrabold  text-blue-900 text-3xl">
-                  {currRate
-                    ? (Number(currRate) * Number(childPrice)).toFixed(2)
-                    : Number(childPrice).toFixed(2)}
-                </span>
-                {currentCurrency.currency}
-              </span>
-            </div> */}
+            ))}
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="text-center p-5 text-gray-500">No images available</div>
+      )}
     </div>
   );
 };

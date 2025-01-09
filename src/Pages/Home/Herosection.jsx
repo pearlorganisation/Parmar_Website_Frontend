@@ -59,6 +59,10 @@ const Herosection = () => {
         <Swiper
           slidesPerView={1}
           spaceBetween={10}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
           pagination={{
             clickable: true,
           }}
