@@ -446,7 +446,7 @@ const AttractionBookingFormForb2cuser = (props) => {
       } else {
         try {
           const response = await instance.post("setCartInfo", submitData);
-          if (window.dataLayer) {  
+          if (window.dataLayer) {
             window.dataLayer.push({ ecommerce: null }); // Clear the previous ecommerce object.
             window.dataLayer.push({
               event: "add_to_cart",
@@ -509,8 +509,144 @@ const AttractionBookingFormForb2cuser = (props) => {
     setshowMofCartModel(false);
   };
 
-  // function handleCheckout()
-  // {}
+  async function postApi(leadPassenger, payload) {
+    if (window.dataLayer) {
+      window.dataLayer.push({ ecommerce: null }); // Clear the previous ecommerce object.
+      window.dataLayer.push({
+        event: "begin_checkout",
+        ecommerce: {
+          currency: "AED",
+          value: payload?.price,
+
+          items: [payload],
+        },
+      });
+    } else {
+      console.warn("dataLayer is not defined");
+    }
+    const envId = attId == 45 ? 21457 : 54154;
+    const tempBookObject = {
+      agencyId:
+        loginData?.data?.userType === "b2b" && loginData?.data?.userId
+          ? loginData?.data?.userId
+          : "",
+      bookB2bId:
+        loginData?.data?.userType === "b2b" && loginData?.data?.userId
+          ? loginData?.data?.userId
+          : "",
+      bookB2cId: loginData?.data?.userId ? loginData?.data?.userId : 0,
+      platformId: 2,
+      envId: envId,
+      bookCustomerName: leadPassenger.firstname,
+      customerLastName: leadPassenger.lastname,
+      bookCustomerEmail: leadPassenger.email,
+      bookMobileNumber: leadPassenger.contact,
+      bookTotal:parseInt(payload.price),
+    };
+    const postObject = {
+      agencyId:
+        loginData?.data?.userType === "b2b" && loginData?.data?.userId
+          ? loginData?.data?.userId
+          : "",
+      bookB2bId:
+        loginData?.data?.userType === "b2b" && loginData?.data?.userId
+          ? loginData?.data?.userId
+          : "",
+      paymentB2cId: loginData?.data?.userId ? loginData?.data?.userId : 0,
+      platformId: 2,
+      envId: envId,
+      paymentRemarks: leadPassenger?.firstname || "First Name",
+      paymentAmount: parseInt(payload?.price) || 0,
+      secretKey: secretKey,
+      tempRef: loginData?.data?.userId ? loginData?.data?.userId : tempId,
+      temporaryBookingDto: tempBookObject,
+      successUrl: `https://www.travelpack365.com/ticket-booking-status/`,
+      failureUrl: `https://www.travelpack365.com/ticket-booking-status/`,
+    };
+
+    try {
+      const response = await instance.post(
+        "/setNetworkPaymentsDetailTvlPack",
+        postObject
+      );
+
+      console.log(response.data);
+      //  setisLoading(false);
+      if (response.data.paymentUrl) {
+        window.location.replace(response.data.paymentUrl);
+      }
+    } catch (error) {
+      console.log(error);
+      //  setisLoading(false);
+    }
+  }
+
+  const openLeaderPassengerModal = () => {
+    Swal.fire({
+      title: "Enter Leader Passenger Details",
+      html: `
+       <div style="text-align: left; display: flex; flex-wrap: wrap; justify-content: space-between;">
+      <div style="width: 48%; padding-bottom: 10px;">
+        <input type="text" id="firstname" class="swal2-input" placeholder="First Name" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      </div>
+      <div style="width: 48%; padding-bottom: 10px;">
+        <input type="text" id="lastname" class="swal2-input" placeholder="Last Name" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      </div>
+      <div style="width: 48%; padding-bottom: 10px;">
+        <input type="email" id="email" class="swal2-input" placeholder="Email" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      </div>
+      <div style="width: 48%; padding-bottom: 10px;">
+        <input type="tel" id="contact" class="swal2-input" placeholder="Contact Number" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      </div>
+    </div>
+    `,
+      confirmButtonText: "Submit",
+      showCancelButton: true,
+      cancelButtonText: "Cancel",
+      preConfirm: () => {
+        // Retrieve the values from the input fields
+        const firstname = document.getElementById("firstname").value.trim();
+        const lastname = document.getElementById("lastname").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const contact = document.getElementById("contact").value.trim();
+
+        // Validation before closing the modal
+        if (!firstname || !lastname || !email || !contact) {
+          Swal.showValidationMessage("All fields are required!");
+          return false; // Prevent modal from closing
+        }
+
+        return { firstname, lastname, email, contact }; // Pass data to `.then()` block
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Process the confirmed data
+        const passengerDetails = result.value; // Data returned from preConfirm
+        console.log("Passenger Details:", passengerDetails);
+
+        const tempga4data = {
+          item_id: attId,
+          item_name: attractionName,
+          price: currRate
+            ? (Number(currRate) * Number(formData.bookTotal)).toFixed(2)
+            : Number(formData.bookTotal).toFixed(2),
+          quantity: Number(formData.nofAdult) + Number(formData.nofChild),
+        };
+
+        // alert(`Passenger Details: ${JSON.stringify(passengerDetails)}`);
+        postApi(passengerDetails,tempga4data)
+        // Swal.fire('Success!', 'Details saved successfully.', 'success');
+      } else {
+        console.log("Modal dismissed");
+      }
+    });
+  };
+
+  function handleCheckout() {
+    if((Number(formData.nofAdult) +Number(formData.nofChild)) > 0 && (formData.travelDate != ""))
+        openLeaderPassengerModal();
+   
+  }
 
   const isResourceOrAttIdMatched =
     (formData?.resourceID != null && formData?.resourceID != 0) || attId == 147;
@@ -722,7 +858,9 @@ const AttractionBookingFormForb2cuser = (props) => {
         <div className="flex flex-row justify-between mt-5">
           <button
             className="btn btn-primary rounded "
-            onClick={() => alert("Checkout Clicked")}
+            onClick={() => {
+              handleCheckout();
+            }}
             // disabled={Object.keys(errors).length > 0}
           >
             Checkout
