@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
+import { instance } from "../../Components/Others/AxiosInstance";
 
 const HeroSection2 = () => {
   const images = [
@@ -11,6 +12,31 @@ const HeroSection2 = () => {
     "https://s3-alpha-sig.figma.com/img/91a5/1c24/8eafa661aa7c0f7cb8af2427f96c2451?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=a7pgqWj9li7NUtguzzwv1QbjyAC~NjzNkWcxHVRPtQxK~JZnu7vb43~Q2z3lui0BPs8E2rjeph~s32PFFA0414W-0U4T41NGC4UpaDqFm4pK19IfjtBy4oHHxib7AaSx-OwinkLyy6pprXOtCMIf-ykGpKMXW1is4K92eI5EB8Zo8s0R6w8y9W6eqwYdz4fID50z3laNPk1gT7f1lv0Yv6QK7PtrHiOEAxRnAGyf4sEynK4gWsVttWMsvbmbKlbgQEPjqy7r3WfxyVVZiKChVi~I6U68NQ1k-01WWYD35NI01u~INsetCQYGTr42VxpGKPFy2H1QyqykksdBNpXsHQ__",
     "https://www.shutterstock.com/image-photo/calm-weather-on-sea-ocean-600nw-2212935531.jpg",
   ];
+
+  const [bannerImageList, setBannerImageList] = useState(images);
+
+  useEffect(() => {
+    getBannerImages();
+  }, []);
+
+  const getBannerImages = async () => {
+    try {
+      const res = await instance.post("getWebsiteBannerImagesList", {
+        id: 1,
+      });
+
+      const filterImage = res.data.filter(
+        (item) => item.category === "travelpackb2c"
+      );
+
+      setBannerImageList(filterImage);
+      console.log("Filtered Images:", res);
+    } catch (error) {
+      console.error("Error fetching images:", error);
+    }
+  };
+
+  console.log(bannerImageList, "banner img listwa");
 
   return (
     <div className="relative h-[500px] w-full">
@@ -28,7 +54,7 @@ const HeroSection2 = () => {
         loop={true}
         className="h-full"
       >
-        {images.map((image, index) => (
+        {bannerImageList.map((image, index) => (
           <SwiperSlide key={index}>
             <div
               className="h-full bg-cover bg-center"

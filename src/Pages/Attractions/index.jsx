@@ -113,7 +113,7 @@ const Attractions = () => {
   return (
     <Fragment>
       <Banner title="Attractions" />
-      <div className="container-fluid contact py-5">
+      <div className="container-fluid contact md:py-5">
         <div className="container py-5">
           <div className="md:flex justify-between gap-5  hidden">
             <div className="w-3/12">
@@ -135,7 +135,7 @@ const Attractions = () => {
                 ))}
               </div>
             </div>
-            <div className="w-9/12">
+            <div className="w-11/12 bg-red-500">
               <div className="mb-5">
                 <input
                   type="text"

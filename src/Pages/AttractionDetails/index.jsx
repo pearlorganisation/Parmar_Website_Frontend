@@ -367,7 +367,7 @@ const AttractionDetails = () => {
 
       <div className="container-fluid">
         <div className="container">
-          <div className="bg-white p-4 shadow-lg rounded mb-3 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+          <div className="bg-white p-4 shadow-lg rounded mb-3 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-5">
             {aminitiesDataList?.map((item, index) => (
               <div className="flex gap-2 items-center" key={index}>
                 <div className="text-[#01b8cc] text-3xl">{item.icon}</div>
@@ -579,14 +579,14 @@ const AttractionDetails = () => {
         <div className="md:hidden lg:hidden fixed bottom-0 z-10 w-full ">
           <div className=" ">
             <div className="bg-white border-2 rounded-lg shadow-lg p-3">
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
                 <button
                   onClick={() => setshowFormonMobile(!showFormonMobile)}
                   className="btn btn-primary rounded "
                 >
                   {showFormonMobile ? "Close" : " Book Now"}
                 </button>
-                <div className="font-extrabold text-xl text-[#01b8cc]">
+                <div className="font-bold text-base md:font-extrabold md:text-xl text-[#01b8cc]">
                   Starts From
                   {loginData?.data?.userType === "b2b"
                     ? attractionDetails?.gwtAdultOfferPrice

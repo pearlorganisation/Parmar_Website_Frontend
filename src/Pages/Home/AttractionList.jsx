@@ -176,7 +176,7 @@ const AttractionList = (props) => {
                   spaceBetween: 10,
                 },
                 768: {
-                  slidesPerView: 3,
+                  slidesPerView: 2,
                   spaceBetween: 15,
                 },
                 1024: {
@@ -190,7 +190,7 @@ const AttractionList = (props) => {
                 filterAttractions.slice(0, 8).map((item, index) => {
                   return (
                     <SwiperSlide key={index} className="">
-                      <div className="flex justify-center items-center w-full  mb-5">
+                      <div className="flex justify-center items-center rounded-full w-full mb-12 px-2 ">
                         <AttractionCard item={item} currRate={currRate} />
                       </div>
                     </SwiperSlide>
