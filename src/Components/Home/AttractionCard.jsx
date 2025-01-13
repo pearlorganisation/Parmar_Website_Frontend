@@ -56,8 +56,14 @@ const AttractionCard = ({ item, currRate }) => {
                 fill="#FFB649"
               />
             </svg>
-            <span className="text-xs md:text-sm  font-semibold">4.5 (37)</span>
-            <img src={EmojiImage} alt="Emoji" className="w-4 h-4" />
+            <span className="text-xs md:text-sm  font-semibold">4.5 </span>
+            <span className="text-xs md:text-sm  font-semibold"> (37)</span>
+
+            <img
+              src={EmojiImage}
+              alt="Emoji"
+              className="w-2.5 h-2.5 md:w-4 md:h-4"
+            />
           </div>
         </div>
       </div>
@@ -109,7 +115,7 @@ const AttractionCard = ({ item, currRate }) => {
           </span>{" "}
           per person
         </p>
-        <div className="flex flex-wrap justify-center gap-4 text-xs sm:text-sm mt-0">
+        <div className="flex flex-wrap justify-center gap-4 text-xs sm:text-sm mt-0 px-2">
           <div className="flex items-center gap-1">
             <img src={ClockImage} className="w-4 h-4" alt="Clock" />
             <span className="text-xs md:text-base  lg:text-lg">4 Days</span>
