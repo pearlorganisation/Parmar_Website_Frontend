@@ -158,7 +158,7 @@ const AttractionList = (props) => {
         </div>
 
         <div className="flex items-center justify-center relative">
-          <div className="w-[70%] md:w-[80%] ">
+          <div className="w-[70%] md:w-[85%] ">
             <Swiper
               slidesPerView={1}
               spaceBetween={20}
@@ -175,17 +175,33 @@ const AttractionList = (props) => {
                   slidesPerView: 2,
                   spaceBetween: 4,
                 },
-                640: {
+                480: {
                   slidesPerView: 2,
-                  spaceBetween: 10,
+                  spaceBetween: 6,
                 },
+                540: {
+                  slidesPerView: 2,
+                  spaceBetween: 8,
+                },
+                // 640: {
+                //   slidesPerView: 2,
+                //   spaceBetween: 10,
+                // },
                 768: {
                   slidesPerView: 2,
                   spaceBetween: 15,
                 },
+                840: {
+                  slidesPerView: 2,
+                  spaceBetween: 15,
+                },
+                960: {
+                  slidesPerView: 2,
+                  spaceBetween: 3,
+                },
                 1024: {
                   slidesPerView: 3,
-                  spaceBetween: 25,
+                  spaceBetween: 10,
                 },
               }}
               className="mySwiper"
@@ -194,7 +210,7 @@ const AttractionList = (props) => {
                 filterAttractions.slice(0, 8).map((item, index) => {
                   return (
                     <SwiperSlide key={index} className="">
-                      <div className="flex justify-center items-center rounded-full w-full mb-12 px-2 ">
+                      <div className="flex justify-center items-center rounded-full w-full mb-20 md:mb-12 px-2 ">
                         <AttractionCard item={item} currRate={currRate} />
                       </div>
                     </SwiperSlide>

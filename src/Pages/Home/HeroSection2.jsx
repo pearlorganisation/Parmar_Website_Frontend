@@ -13,30 +13,30 @@ const HeroSection2 = () => {
     "https://www.shutterstock.com/image-photo/calm-weather-on-sea-ocean-600nw-2212935531.jpg",
   ];
 
-  const [bannerImageList, setBannerImageList] = useState(images);
+  // const [bannerImageList, setBannerImageList] = useState(images);
 
-  useEffect(() => {
-    getBannerImages();
-  }, []);
+  // useEffect(() => {
+  //   getBannerImages();
+  // }, []);
 
-  const getBannerImages = async () => {
-    try {
-      const res = await instance.post("getWebsiteBannerImagesList", {
-        id: 1,
-      });
+  // const getBannerImages = async () => {
+  //   try {
+  //     const res = await instance.post("getWebsiteBannerImagesList", {
+  //       id: 1,
+  //     });
 
-      const filterImage = res.data.filter(
-        (item) => item.category === "travelpackb2c"
-      );
+  //     const filterImage = res.data.filter(
+  //       (item) => item.category === "travelpackb2c"
+  //     );
 
-      setBannerImageList(filterImage);
-      console.log("Filtered Images:", res);
-    } catch (error) {
-      console.error("Error fetching images:", error);
-    }
-  };
+  //     setBannerImageList(filterImage);
+  //     console.log("Filtered Images:", res);
+  //   } catch (error) {
+  //     console.error("Error fetching images:", error);
+  //   }
+  // };
 
-  console.log(bannerImageList, "banner img listwa");
+  // console.log(bannerImageList, "banner img listwa");
 
   return (
     <div className="relative h-[500px] w-full">
@@ -54,7 +54,7 @@ const HeroSection2 = () => {
         loop={true}
         className="h-full"
       >
-        {bannerImageList.map((image, index) => (
+        {images.map((image, index) => (
           <SwiperSlide key={index}>
             <div
               className="h-full bg-cover bg-center"
