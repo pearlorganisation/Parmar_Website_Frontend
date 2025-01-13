@@ -322,7 +322,7 @@ hr.solid {
   align-items: center;
 }
 
-/* Custom Swiper Navigation Buttons */
+/* Base Styles */
 .custom-swiper-button-prev,
 .custom-swiper-button-next {
   position: absolute;
@@ -371,14 +371,76 @@ hr.solid {
   transform: translateY(-50%) scale(0.95);
 }
 
+/* Pagination Bullets */
 .swiper-pagination-bullet {
-  width: 16px !important; /* Increase width */
-  height: 16px !important; /* Increase height */
-  background-color: rgba(255, 255, 255, 0.8) !important; /* Adjust color */
-  opacity: 1 !important; /* Ensure visible */
+  width: 16px !important;
+  height: 16px !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: blue !important; /* Highlight active dot */
-  transform: scale(1.2) !important; /* Slightly enlarge the active dot */
+  background-color: #0dcaf0 !important;
+  transform: scale(1.2) !important;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  /* Large (lg) */
+  .custom-swiper-button-prev,
+  .custom-swiper-button-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-swiper-button-prev svg,
+  .custom-swiper-button-next svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .swiper-pagination-bullet {
+    width: 14px !important;
+    height: 14px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Medium (md) */
+  .custom-swiper-button-prev,
+  .custom-swiper-button-next {
+    width: 30px;
+    height: 30px;
+  }
+
+  .custom-swiper-button-prev svg,
+  .custom-swiper-button-next svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Small (sm) */
+  .custom-swiper-button-prev,
+  .custom-swiper-button-next {
+    width: 15px;
+    height: 15px;
+  }
+
+  .custom-swiper-button-prev svg,
+  .custom-swiper-button-next svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+  }
 }
