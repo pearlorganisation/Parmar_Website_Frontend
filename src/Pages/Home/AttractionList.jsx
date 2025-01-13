@@ -172,7 +172,7 @@ const AttractionList = (props) => {
               }}
               breakpoints={{
                 640: {
-                  slidesPerView: 1,
+                  slidesPerView: 2,
                   spaceBetween: 10,
                 },
                 768: {

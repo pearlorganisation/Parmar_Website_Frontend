@@ -33,15 +33,16 @@ const AttractionCard = ({ item, currRate }) => {
       onClick={() => navigate(`/attraction-details/${item?.attUniqueId}`)}
     >
       {/* Responsive Image */}
+      <div className="relative w-[90%] flex justify-center">
       <img
         src={`${imageurl}${item?.attThumbnailImage}`}
-        className="w-[90%] h-44 sm:h-40 md:h-44 lg:h-44 object-cover rounded-xl  mt-4"
+        className=" h-44 w-full sm:h-40 md:h-44 lg:h-44 object-cover rounded-xl  mt-4"
         alt={item?.attName || "Attraction"}
         loading="lazy"
       />
 
       {/* Rating Badge */}
-      <div className="absolute top-[50%] md:top-[50%] left-[25%]   transform -translate-x-1/3 -translate-y-1/4 rounded-full shadow-lg bg-white px-2 py-1  md:px-4 md:py-2">
+      <div className="absolute bottom-0 left-10   transform -translate-x-1/3 -translate-y-1/4 rounded-full shadow-lg bg-white px-2 py-1  md:px-4 md:py-2">
         <div className="flex items-center gap-1 flex-nowrap">
           <svg
             width="16"
@@ -59,10 +60,12 @@ const AttractionCard = ({ item, currRate }) => {
           <img src={EmojiImage} alt="Emoji" className="w-4 h-4" />
         </div>
       </div>
+      </div>
+
 
       {/* Card Content */}
       <div className="bg-white flex flex-col justify-between w-full px-4 space-y-1">
-        <h4 className="text-base font-bold text-center sm:text-lg lg:text-xl">
+        <h4 className="text-xs line-clamp-2 font-bold text-center  lg:text-xl">
           {item?.attName}
         </h4>
 
