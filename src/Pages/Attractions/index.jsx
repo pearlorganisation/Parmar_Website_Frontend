@@ -135,7 +135,7 @@ const Attractions = () => {
                 ))}
               </div>
             </div>
-            <div className="w-11/12 bg-red-500">
+            <div className="w-11/12 ">
               <div className="mb-5">
                 <input
                   type="text"
@@ -160,7 +160,7 @@ const Attractions = () => {
           <div class="container-fluid categories pb-5">
             <div class="container pb-5">
               <div className="md:flex flex-wrap justify-between">
-                <div className="block md:hidden">
+                <div className="block md:hidden ">
                   <div>
                     <TextInput
                       placeholder="Search attraction here"
@@ -168,9 +168,10 @@ const Attractions = () => {
                       onChange={(e) => setSearchKey(e.target.value)}
                     />
                   </div>
+
                   {filterAttractions.length > 0 ? (
                     filterAttractions.map((item, index) => (
-                      <div key={index}>
+                      <div key={index}  className="p-4">
                         <ListCardMobile
                           item={item}
                           currRate={currRate?.convertionRate}
@@ -180,6 +181,7 @@ const Attractions = () => {
                   ) : (
                     <p>No attractions found.</p>
                   )}
+                  
                 </div>
               </div>
             </div>

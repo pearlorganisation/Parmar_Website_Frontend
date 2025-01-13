@@ -1,7 +1,7 @@
 import React from "react";
 
 const CheckboxInput = ({ label, checked, onChange, name, disabled }) => (
-  <div className="mb-2 w-full flex items-center">
+  <div className="mb-2 w-full flex justify-center gap-1 items-center">
     <input
       name={name}
       type="checkbox"
@@ -13,7 +13,7 @@ const CheckboxInput = ({ label, checked, onChange, name, disabled }) => (
     />
     <label
       htmlFor="checkbox-input"
-      className="ml-2 text-sm font-medium text-gray-900 dark:text-white"
+      className="ml-2 text-xs text-justify md:text-sm font-medium text-gray-900 dark:text-white"
     >
       {label}
     </label>

@@ -17,31 +17,29 @@ const ListCardMobile = (props) => {
         <div className="categories-item-inner">
           <div className="categories-img rounded-top">
             <img
-              src={imageurl + item?.attGwtThumbnailImage}
+              src={imageurl + item?.attThumbnailImage}
               className="img-fluid w-100 rounded-top"
               alt={item?.attName}
               loading="lazy"
             />
           </div>
           <div className="categories-content rounded-bottom p-1 ">
-            <h4 className="font-bold">{item?.attName}</h4>
+            <h4 className="font-bold text-lg line-clamp-2">{item?.attName}</h4>
 
-            <div className="flex justify-center text-[#ffc107]">
+            <div className="flex text-base font-semibold justify-center text-[#ffc107]">
               <div>{item?.attCity}</div>
             </div>
 
-            {/* <div className="categories-review mb-4">
-              <div className="me-3">4.5 Review</div>
-              <div className="d-flex justify-content-center text-secondary">
-                <i className="fas fa-star" />
-                <i className="fas fa-star" />
-                <i className="fas fa-star" />
-                <i className="fas fa-star" />
-                <i className="fas fa-star text-body" />
-              </div>
-            </div> */}
-            <div className="mb-4 mt-4 px-3">
-              <h4 className="bg-[#00646f] text-primary rounded-pill py-2 px-4 mb-0 font-bold">
+            <div className="mb-4 mt-4 px-2">
+
+              <p className="text-slate-600 text-xs md:text-sm font-semibold text-center line-clamp-4"> 
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste explicabo repellat alias? Suscipit, vitae? Sequi?
+              </p>
+            </div>
+
+            <div className="px-3 mb-2 flex justify-between">
+            <div className="flex justify-center items-center">
+            <h4 className="bg-[#00646f] text-xs md:text-sm text-primary rounded-pill py-1 px-3 mb-0 font-bold">
                 {currRate
                   ? (
                       Number(currRate) *
@@ -56,16 +54,14 @@ const ListCardMobile = (props) => {
                         ? item.gwtAdultOfferPrice
                         : item.gwtB2cAdultPrice
                     ).toFixed(2)}
-                <span className="text-[10px] text-white">
-                  {currentCurrency.currency}
+                <span className="text-[9px] md:text-[10px] text-white">
+                  &nbsp; {currentCurrency.currency}
                 </span>
               </h4>
             </div>
-
-            <div className="px-3 mb-2 flex justify-end">
               <button
                 href="#"
-                className="btn btn-primary rounded-pill d-flex justify-content-center py-1 "
+                className="btn btn-primary text-xs md:text-sm rounded-pill d-flex justify-content-center py-1 "
                 onClick={() =>
                   navigate(`/attraction-details/${item?.attUniqueId}`)
                 }

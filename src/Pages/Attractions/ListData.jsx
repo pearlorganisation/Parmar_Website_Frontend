@@ -9,26 +9,27 @@ const ListData = ({ item, currRate }) => {
   return (
     <Fragment>
       <div className="flex rounded border-2 p-1 border-[#1f2e4e] gap-3 mb-3">
-        <div className="w-3/12">
+        <div className="min-h-32 min-w-32 max-h-32 max-w-32  md:min-h-48 md:min-w-48 md:max-h-48 md:max-w-48  lg:min-h-60 lg:min-w-60 lg:max-h-60 lg:max-w-60 ">
           <img
-            src={imageurl + item.attGwtThumbnailImage}
-            className="rounded-l-lg h-48 w-full object-cover"
+            src={imageurl + item.attThumbnailImage}
+            className="rounded-l-lg h-full w-full object-cover"
             alt={item?.attName}
             loading="lazy"
           />
         </div>
-        <div className="w-7/12">
-          <h4 className="font-bold">{item.attName}</h4>
-          <div className="flex gap-3">
-            <div> {item.attCity},</div>
-            <div>{item.attCountryCode}</div>
+        <div className=" flex flex-col justify-center w-[60%]">
+          <h4 className="font-bold text-xs md:text-sm lg:text-xl">{item.attName}</h4>
+          <div className="flex flex-col text-slate-400 gap-3 ">
+            <div className="text-yellow-300 font-bold text-xs md:text-sm lg:text-xl"> {item.attCity},</div>
+            <div className="text-black font-semibold text-xs md:text-sm lg:text-xl">{item.attCountryCode}</div>
+            <div className="font-sans  line-clamp-2 lg:line-clamp-4 ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque est impedit facere sit laboriosam temporibus inventore ab nobis non fugiat adipisci rerum sapiente perferendis laudantium, odio quasi modi placeat veniam!</div>
           </div>
         </div>
-        <div className="w-2/12 flex flex-col justify-betweenp-3 ml-auto bg-[#00646f] rounded-r-lg">
+        <div className="min-h-32 min-w-24 max-h-32 max-w-24  md:min-h-48 md:min-w-32 md:max-h-48 md:max-w-32  lg:min-h-60 lg:min-w-40 lg:max-h-60 lg:max-w-40  flex border-3 border-yellow-500 flex-col justify-between p-3 ml-auto bg-[#00646f] rounded-r-lg">
           <div className="mt-auto mb-3">
-            <div className="mr-1 text-right">
-              <div className="text-[15px] text-white ">From</div>
-              <div className="text-2xl font-bold text-[#ffc107]">
+            <div className="text-right">
+              <div className="lg:text-lg md:text-base text-sm font-bold text-white ">From</div>
+              <div className="lg:text-3xl md:text-2xl text-xl  font-bold text-[#ffc107]">
                 {currRate
                   ? (
                       Number(currRate) *
@@ -42,16 +43,16 @@ const ListData = ({ item, currRate }) => {
                       loginData?.data?.userType === "b2b"
                         ? item.gwtAdultOfferPrice
                         : item.gwtB2cAdultPrice
-                    ).toFixed(2)}
+                    ).toFixed(2) }
 
-                <span className="text-[10px] text-white">
-                  {currentCurrency.currency}
+                <span className="text-xs md:text-sm lg:text-lg text-white">
+                  &nbsp; {currentCurrency.currency}
                 </span>
               </div>
-              <div className="text-[10px] text-white">Per Adult</div>
+              <div className="text-xs mb-2  lg:text-lg text-white">Per Adult</div>
 
               <button
-                className="btn btn-primary rounded "
+                className="px-2 py-1.5 btn-primary rounded text-xs  lg:text-lg"
                 // href={() => navigate(`/attraction-details/${item.attUniqueId}`)}
                 onClick={() =>
                   navigate(`/attraction-details/${item.attUniqueId}`)
