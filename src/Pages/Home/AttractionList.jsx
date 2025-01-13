@@ -158,7 +158,7 @@ const AttractionList = (props) => {
         </div>
 
         <div className="flex items-center justify-center relative">
-          <div className="w-[80%] ">
+          <div className="w-[70%] md:w-[80%] ">
             <Swiper
               slidesPerView={1}
               spaceBetween={20}
@@ -171,6 +171,10 @@ const AttractionList = (props) => {
                 clickable: true,
               }}
               breakpoints={{
+                420: {
+                  slidesPerView: 2,
+                  spaceBetween: 4,
+                },
                 640: {
                   slidesPerView: 2,
                   spaceBetween: 10,
