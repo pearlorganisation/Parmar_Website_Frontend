@@ -135,7 +135,7 @@ const Attractions = () => {
                 ))}
               </div>
             </div>
-            <div className="w-11/12 bg-red-500">
+            <div className="w-11/12 ">
               <div className="mb-5">
                 <input
                   type="text"

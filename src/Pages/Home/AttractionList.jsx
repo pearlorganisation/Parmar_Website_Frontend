@@ -194,7 +194,7 @@ const AttractionList = (props) => {
                 filterAttractions.slice(0, 8).map((item, index) => {
                   return (
                     <SwiperSlide key={index} className="">
-                      <div className="flex justify-center items-center rounded-full w-full mb-12 px-2 ">
+                      <div className="flex justify-center items-center rounded-full w-full mb-20 md:mb-12 px-2 ">
                         <AttractionCard item={item} currRate={currRate} />
                       </div>
                     </SwiperSlide>

@@ -389,8 +389,8 @@ hr.solid {
   /* Large (lg) */
   .custom-swiper-button-prev,
   .custom-swiper-button-next {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
   }
 
   .custom-swiper-button-prev svg,
@@ -429,8 +429,8 @@ hr.solid {
   /* Small (sm) */
   .custom-swiper-button-prev,
   .custom-swiper-button-next {
-    width: 15px;
-    height: 15px;
+    width: 25px;
+    height: 25px;
   }
 
   .custom-swiper-button-prev svg,
