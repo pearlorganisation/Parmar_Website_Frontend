@@ -60,7 +60,7 @@ const CombopackList = () => {
             <h1 className="display-5 text-capitalize mb-3">
               Combo<span className="text-primary">pack</span> Offers
             </h1>
-            <p className="mb-0">
+            <p className="mb-0 text-sm md:text-lg font-serif text-justify md:text-center ">
               Unbeatable Combo Pack Offers – Double the Adventure, Double the
               Savings! Enjoy an extraordinary experience with our specially
               curated packages that bring you the best of both worlds at an
@@ -78,10 +78,10 @@ const CombopackList = () => {
                   onChange={(e) => setSearchKey(e.target.value)}
                 />
               </div>
-              <div className="md:flex flex-wrap justify-between">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {filterComboList &&
                   filterComboList.map((item, index) => (
-                    <div className="md:w-[24%] mb-20 py-2" key={index}>
+                    <div className=" py-2" key={index}>
                       <CombopackCard
                         item={item}
                         currRate={currRate?.convertionRate}

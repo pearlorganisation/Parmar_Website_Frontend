@@ -26,7 +26,8 @@ const BannerImages = ({ tourpackDetails, currRate, currentCurrency }) => {
                 <div className="grid md:grid-cols-4 md:grid-rows-2 gap-4 md:h-[400px] lg:h-[400px]">
                   <div className="md:col-span-2 md:row-span-2 relative overflow-hidden">
                     <img
-                      src={imageurl + tourpackDetails?.tvl_galleryImage_1}
+                      src={imageurl +'6755797239834576917.jpg'} 
+                        // tourpackDetails?.tvl_galleryImage_1}
                       className="object-fill w-full h-full"
                       alt="Your Image"
                       loading="lazy"
@@ -34,7 +35,8 @@ const BannerImages = ({ tourpackDetails, currRate, currentCurrency }) => {
                   </div>
                   <div className="md:col-span-1 relative overflow-hidden">
                     <img
-                      src={imageurl + tourpackDetails?.tvl_galleryImage_2}
+                      // src={imageurl + tourpackDetails?.tvl_galleryImage_2}
+                      src={imageurl + '6755797239834576917.jpg'}
                       className="object-fill w-full h-full"
                       alt="Your Image"
                       loading="lazy"
@@ -42,7 +44,9 @@ const BannerImages = ({ tourpackDetails, currRate, currentCurrency }) => {
                   </div>
                   <div className="md:col-span-1 relative overflow-hidden">
                     <img
-                      src={imageurl + tourpackDetails?.tvl_galleryImage_3}
+                      // src={imageurl + tourpackDetails?.tvl_galleryImage_3}
+                      src={imageurl + '6755797239834576917.jpg'}
+
                       className="object-fill w-full h-full"
                       alt="Your Image"
                       loading="lazy"
@@ -50,7 +54,9 @@ const BannerImages = ({ tourpackDetails, currRate, currentCurrency }) => {
                   </div>
                   <div className="md:col-span-1 relative overflow-hidden">
                     <img
-                      src={imageurl + tourpackDetails?.tvl_galleryImage_4}
+                      // src={imageurl + tourpackDetails?.tvl_galleryImage_4}
+                      src={imageurl + '6755797239834576917.jpg'}
+
                       className="object-fill w-full h-full"
                       alt="Your Image"
                       loading="lazy"
@@ -58,7 +64,9 @@ const BannerImages = ({ tourpackDetails, currRate, currentCurrency }) => {
                   </div>
                   <div className="md:col-span-1 relative overflow-hidden">
                     <img
-                      src={imageurl + tourpackDetails?.tvl_galleryImage_5}
+                      // src={imageurl + tourpackDetails?.tvl_galleryImage_5}
+                      src={imageurl + '6755797239834576917.jpg'}
+
                       className="object-fill w-full h-full"
                       alt="Your Image"
                       loading="lazy"

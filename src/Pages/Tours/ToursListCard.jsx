@@ -15,12 +15,13 @@ const ToursListCard = (props) => {
       } rounded border-2 p-1 border-[#1f2e4e]`}
     >
       <div className="w-3/4 relative ">
-        <div className="p-5">
-          <h4 className="font-bold text-xl">{item.tourName}</h4>
-          <div>{item.tourCity}</div>
+        <div className="px-5 py-3">
+          <h4 className="font-bold md:text-base lg:text-xl">{item.tourName}</h4>
+          <div className="md:text-sm  font-semibold text-yellow-300 lg:text-lg">{item.tourCity}</div>
 
           {item.tourDescription && (
             <div
+            className="line-clamp-2"
               dangerouslySetInnerHTML={{
                 __html: `${item.tourDescription.substring(0, 200)}${
                   item.tourDescription.length > 200 ? "..." : ""
@@ -30,12 +31,12 @@ const ToursListCard = (props) => {
           )}
         </div>
 
-        <div className="absolute w-full bottom-0 flex justify-between p-5">
-          <div className="text-[#ea001e] font-bold text-2xl">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-16 py-2">
+          <div className="text-[#ea001e] font-bold text-base md:text-lg lg:text-xl">
             {" "}
             {item.tourNofDays} Days
           </div>{" "}
-          <div className="text-[#ea001e] font-bold  text-2xl">
+          <div className="text-[#ea001e] font-bold text-base md:text-lg lg:text-xl">
             {currRate
               ? (Number(currRate) * Number(item.tourPrice)).toFixed(2)
               : Number(item.tourPrice).toFixed(2)}
@@ -54,11 +55,12 @@ const ToursListCard = (props) => {
           </div>
         </div>
       </div>
-      <div className="w-2/5">
+      <div className="w-1/4 ">
         <img
-          src={imageurl + item.tourLogo}
+          src={imageurl + item.tourThumbnailImage}
           alt={item.tourName}
           loading="lazy"
+          className="h-full min-w-32"
         />
       </div>
     </div>
