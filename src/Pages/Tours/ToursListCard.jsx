@@ -17,11 +17,13 @@ const ToursListCard = (props) => {
       <div className="w-3/4 relative ">
         <div className="px-5 py-3">
           <h4 className="font-bold md:text-base lg:text-xl">{item.tourName}</h4>
-          <div className="md:text-sm  font-semibold text-yellow-300 lg:text-lg">{item.tourCity}</div>
+          <div className="md:text-sm  font-semibold text-yellow-300 lg:text-lg">
+            {item.tourCity}
+          </div>
 
           {item.tourDescription && (
             <div
-            className="line-clamp-2"
+              className="line-clamp-2"
               dangerouslySetInnerHTML={{
                 __html: `${item.tourDescription.substring(0, 200)}${
                   item.tourDescription.length > 200 ? "..." : ""
@@ -31,7 +33,7 @@ const ToursListCard = (props) => {
           )}
         </div>
 
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-16 py-2">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-12  py-2 gap-4 items-start">
           <div className="text-[#ea001e] font-bold text-base md:text-lg lg:text-xl">
             {" "}
             {item.tourNofDays} Days
