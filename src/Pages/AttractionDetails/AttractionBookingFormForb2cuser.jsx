@@ -580,50 +580,118 @@ const AttractionBookingFormForb2cuser = (props) => {
       //  setisLoading(false);
     }
   }
+  
 
   const openLeaderPassengerModal = () => {
     Swal.fire({
-      title: "Enter Leader Passenger Details",
+      title: 'Passenger Details',
       html: `
-       <div style="text-align: left; display: flex; flex-wrap: wrap; justify-content: space-between;">
-      <div style="width: 48%; padding-bottom: 10px;">
-        <input type="text" id="firstname" class="swal2-input" placeholder="First Name" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+     <style>
+  .modal-content {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 16px; /* Base font size for desktop and tablet */
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  .form-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px; /* Prevents zoom on mobile */
+  }
+  .submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+  }
+  @media (max-width: 480px) {
+    .modal-content {
+      width: 95%;
+      padding: 15px;
+      font-size: 14px; /* Smaller font size for mobile */
+    }
+    .form-input {
+      font-size: 14px; /* Smaller font size for mobile inputs */
+    }
+    .submit-btn {
+      font-size: 14px; /* Smaller font size for mobile button */
+    }
+  }
+  @media (min-width: 1024px) {
+    .modal-content {
+      font-size: 18px; /* Larger font size for desktop */
+    }
+    .form-input {
+      font-size: 18px; /* Larger font size for desktop inputs */
+    }
+    .submit-btn {
+      font-size: 18px; /* Larger font size for desktop button */
+    }
+  }
+</style>
+      <div class="modal-content">
+        <form id="leaderPassengerForm">
+          <div class="form-group">
+            <label for="firstName" class="form-label">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="lastName" class="form-label">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber" class="form-label">Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" required class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="email" required class="form-input">
+          </div>
+        </form>
       </div>
-      <div style="width: 48%; padding-bottom: 10px;">
-        <input type="text" id="lastname" class="swal2-input" placeholder="Last Name" style="width: 100%; padding: 10px; margin-bottom: 10px;">
-      </div>
-      <div style="width: 48%; padding-bottom: 10px;">
-        <input type="email" id="email" class="swal2-input" placeholder="Email" style="width: 100%; padding: 10px; margin-bottom: 10px;">
-      </div>
-      <div style="width: 48%; padding-bottom: 10px;">
-        <input type="tel" id="contact" class="swal2-input" placeholder="Contact Number" style="width: 100%; padding: 10px; margin-bottom: 10px;">
-      </div>
-    </div>
     `,
-      confirmButtonText: "Submit",
       showCancelButton: true,
-      cancelButtonText: "Cancel",
+      confirmButtonText: 'Submit',
       preConfirm: () => {
         // Retrieve the values from the input fields
-        const firstname = document.getElementById("firstname").value.trim();
-        const lastname = document.getElementById("lastname").value.trim();
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
         const email = document.getElementById("email").value.trim();
-        const contact = document.getElementById("contact").value.trim();
-
+        const phoneNumber = document.getElementById("phoneNumber").value.trim();
+    
         // Validation before closing the modal
-        if (!firstname || !lastname || !email || !contact) {
+        if (!firstName || !lastName || !email || !phoneNumber) {
           Swal.showValidationMessage("All fields are required!");
           return false; // Prevent modal from closing
         }
-
-        return { firstname, lastname, email, contact }; // Pass data to `.then()` block
+    
+        return { firstName, lastName, email, phoneNumber }; // Pass data to `.then()` block
       },
     }).then((result) => {
       if (result.isConfirmed) {
         // Process the confirmed data
         const passengerDetails = result.value; // Data returned from preConfirm
         console.log("Passenger Details:", passengerDetails);
-
+    
         const tempga4data = {
           item_id: attId,
           item_name: attractionName,
@@ -632,14 +700,15 @@ const AttractionBookingFormForb2cuser = (props) => {
             : Number(formData.bookTotal).toFixed(2),
           quantity: Number(formData.nofAdult) + Number(formData.nofChild),
         };
-
+    
         // alert(`Passenger Details: ${JSON.stringify(passengerDetails)}`);
-        postApi(passengerDetails,tempga4data)
+        postApi(passengerDetails, tempga4data)
         // Swal.fire('Success!', 'Details saved successfully.', 'success');
       } else {
         console.log("Modal dismissed");
       }
     });
+    
   };
 
   function handleCheckout() {
@@ -656,7 +725,7 @@ const AttractionBookingFormForb2cuser = (props) => {
       {showMofCartModel === true && (
         <MofAddCartModel mofData={mofResData} onCloseModel={onCloseModel} />
       )}
-      <div className="p-3">
+      <div className="p-3 ">
         <div className="font-bold border-b-2 border-gray-200 mb-3">
           <h3 className="text-xl md:text-3xl text-capitalize ">
             Book<span className="text-primary"> Here </span>

@@ -11,7 +11,7 @@ const ListCardMobile = (props) => {
     <Fragment>
       {/* <div class="categories-carousel owl-carousel wow fadeInUp"> */}
       <div
-        className="categories-item p-4 cursor-pointer"
+        className="categories-item p-2 cursor-pointer"
         onClick={() => navigate(`/attraction-details/${item?.attUniqueId}`)}
       >
         <div className="categories-item-inner">

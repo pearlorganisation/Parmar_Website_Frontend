@@ -507,7 +507,7 @@ const AttractionDetails = () => {
           <p>{contentHeight - 500}</p>
 
           <p>Current Scroll Position: {scrollPosition}px</p> */}
-          <div className="container-fluid categories pb-5">
+          <div className="container-fluid categories pb-5 py-5">
             <div className="container pb-5">
               <div className="slider-container">
                 <h3 className="text-xl md:text-3xl  text-capitalize mb-3">
@@ -515,7 +515,7 @@ const AttractionDetails = () => {
                 </h3>
                 <Slider {...settings}>
                   {attList?.map((item, index) => (
-                    <div key={index} className="p-10">
+                    <div key={index} className="p-2">
                       <AttractionCard item={item} />
                     </div>
                   ))}
@@ -528,7 +528,7 @@ const AttractionDetails = () => {
 
       <div
         className={`
-        md:hidden bg-white fixed w-[85%] top-0 z-[1030] overflow-y-auto bottom-0 py-2 pl-4
+        md:hidden bg-white fixed w-full top-0 z-[1030] overflow-y-auto bottom-0 py-2 pl-4
         duration-500 ${showFormonMobile ? "right-0" : "right-[-100%]"}
         `}
       >
@@ -558,11 +558,11 @@ const AttractionDetails = () => {
         </div>
 
         <div
-          className={`md:hidden lg:hidden fixed bottom-0 z-10 w-[85%] right-0  duration-500  ${
+          className={`md:hidden lg:hidden fixed bottom-0 p-4 z-10 w-full right-0  duration-500  ${
             showFormonMobile ? "right-0" : "right-[-100%]"
           }`}
         >
-          <div className="w-[100%]  ">
+          <div className="w-full ">
             <div className="">
               <button
                 onClick={() => setshowFormonMobile(!showFormonMobile)}
