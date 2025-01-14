@@ -89,14 +89,14 @@ const AttractionCard = ({ item, currRate }) => {
             />
             <span className="text-xs md:text-base  lg:text-xl">4 Days</span>
           </div>
-          <div className="flex items-center gap-1">
+          {/* <div className="flex items-center gap-1">
             <img
               src={GroupImage}
               className="w-2.5 h-2.5 md:w-4 md:h-4"
               alt="Group"
             />
             <span className="text-xs md:text-base  lg:text-xl">10+</span>
-          </div>
+          </div> */}
           <div className="flex items-center gap-1">
             <img
               src={LocationImage}
@@ -120,13 +120,13 @@ const AttractionCard = ({ item, currRate }) => {
             <img src={ClockImage} className="w-4 h-4" alt="Clock" />
             <span className="text-xs md:text-base  lg:text-lg">4 Days</span>
           </div>
-          <div className="flex items-center gap-1">
+          {/* <div className="flex items-center gap-1">
             <img src={GroupImage} className="w-4 h-4" alt="Group" />
             <span className="text-xs md:text-base  lg:text-lg">10+</span>
-          </div>
+          </div> */}
           <div className="flex items-center gap-1">
             <img src={LocationImage} className="w-3 h-3" alt="Location" />
-            <span className="text-xs md:text-base  lg:text-base"> Dangar</span>
+            <span className="text-xs md:text-base  lg:text-base"> Dubai</span>
           </div>
         </div>
       </div>

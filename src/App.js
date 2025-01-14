@@ -143,7 +143,7 @@ function App() {
   }
   return (
     <Fragment>
-      <div className="hidden md:block">
+      <div className="hidden md:block z-10">
         <a
           href="https://wa.me/+971529418587"
           style={{

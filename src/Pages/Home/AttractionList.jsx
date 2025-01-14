@@ -158,7 +158,7 @@ const AttractionList = (props) => {
         </div>
 
         <div className="flex items-center justify-center relative">
-          <div className="w-[70%] md:w-[85%] ">
+          <div className="w-[92%] md:w-[90%] ">
             <Swiper
               slidesPerView={1}
               spaceBetween={20}

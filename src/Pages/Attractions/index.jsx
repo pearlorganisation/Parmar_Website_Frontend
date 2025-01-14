@@ -113,7 +113,7 @@ const Attractions = () => {
   return (
     <Fragment>
       <Banner title="Attractions" />
-      <div className="container-fluid contact md:py-5">
+      <div className="mx-auto container contact md:py-5">
         <div className="container py-5">
           <div className="md:flex justify-between gap-5  hidden">
             <div className="w-3/12">
@@ -157,7 +157,7 @@ const Attractions = () => {
             </div>
           </div>
 
-          <div class="container-fluid categories pb-5">
+          <div class=" px-3! categories pb-5">
             <div class="container pb-5">
               <div className="md:flex flex-wrap justify-between">
                 <div className="block md:hidden ">
@@ -171,7 +171,7 @@ const Attractions = () => {
 
                   {filterAttractions.length > 0 ? (
                     filterAttractions.map((item, index) => (
-                      <div key={index}  className="p-4">
+                      <div key={index}  className="py-4">
                         <ListCardMobile
                           item={item}
                           currRate={currRate?.convertionRate}

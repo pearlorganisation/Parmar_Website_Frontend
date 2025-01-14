@@ -19,10 +19,10 @@ const ListData = ({ item, currRate }) => {
         </div>
         <div className=" flex flex-col justify-center w-[60%]">
           <h4 className="font-bold text-xs md:text-sm lg:text-xl">{item.attName}</h4>
-          <div className="flex flex-col text-slate-400 gap-3 ">
-            <div className="text-yellow-300 font-bold text-xs md:text-sm lg:text-xl"> {item.attCity},</div>
-            <div className="text-black font-semibold text-xs md:text-sm lg:text-xl">{item.attCountryCode}</div>
-            <div className="font-sans  line-clamp-2 lg:line-clamp-4 ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque est impedit facere sit laboriosam temporibus inventore ab nobis non fugiat adipisci rerum sapiente perferendis laudantium, odio quasi modi placeat veniam!</div>
+          <div className="flex flex-col  gap-3 ">
+            <div className="text-yellow-300 py-2 font-bold text-xs md:text-sm lg:text-xl"> {item.attCity},            <span className="text-black font-semibold text-xs md:text-sm lg:text-xl">{item.attCountryCode}</span>
+            </div>
+            <div className="font-sans text-black line-clamp-2 lg:line-clamp-4 ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque est impedit facere sit laboriosam temporibus inventore ab nobis non fugiat adipisci rerum sapiente perferendis laudantium, odio quasi modi placeat veniam!</div>
           </div>
         </div>
         <div className="min-h-32 min-w-24 max-h-32 max-w-24  md:min-h-48 md:min-w-32 md:max-h-48 md:max-w-32  lg:min-h-60 lg:min-w-40 lg:max-h-60 lg:max-w-40  flex border-3 border-yellow-500 flex-col justify-between p-3 ml-auto bg-[#00646f] rounded-r-lg">
