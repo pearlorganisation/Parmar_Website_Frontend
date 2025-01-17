@@ -22,6 +22,23 @@ const AttractionCard = ({ item, currRate }) => {
   const originalPrice = (conversionRate * basePrice).toFixed(2);
   const finalPrice = (conversionRate * offerPrice).toFixed(2);
 
+  <div className="flex justify-between ">
+    <div className="text-black  font-black line-through">
+      {currRate
+        ? (Number(currRate) * Number(item.gwtAdultPrice)).toFixed(2)
+        : Number(item.gwtB2cAdultPrice).toFixed(2)}
+
+      {currency}
+    </div>
+    <div className="text-[#ffc107] font-black">
+      {currRate
+        ? (Number(currRate) * Number(item.offerB2cAdultPrice)).toFixed(2)
+        : Number(item.gwtAdultOfferPrice).toFixed(2)}
+
+      <span className="text-[10px]"> {currency}</span>
+    </div>
+  </div>;
+
   console.log(item, "item");
   return (
     <div
@@ -69,64 +86,39 @@ const AttractionCard = ({ item, currRate }) => {
       </div>
 
       {/* Card Content */}
-      <div className="bg-white flex flex-col justify-between w-full px-4 space-y-1">
-        <h4 className="text-xs md:text-base  lg:text-xl line-clamp-2 font-bold text-center ">
-          {item?.attName}
-        </h4>
-
-        <p className="text-center text-xs md:text-base  lg:text-xl  md:hidden ">
-          <span className="text-yellow-700">
-            {`${finalPrice} ${currency}`}/-
-          </span>{" "}
-          per person
-        </p>
-        <div className="md:hidden flex flex-wrap justify-center gap-2 md:gap-4 text-xs sm:text-sm mb-1 mt-1">
-          <div className="flex items-center gap-1">
-            <img
-              src={ClockImage}
-              className="w-2.5 h-2.5 md:w-4 md:h-4"
-              alt="Clock"
-            />
-            <span className="text-xs md:text-base  lg:text-xl">4 Days</span>
-          </div>
-          {/* <div className="flex items-center gap-1">
-            <img
-              src={GroupImage}
-              className="w-2.5 h-2.5 md:w-4 md:h-4"
-              alt="Group"
-            />
-            <span className="text-xs md:text-base  lg:text-xl">10+</span>
-          </div> */}
-          <div className="flex items-center gap-1">
-            <img
-              src={LocationImage}
-              className="w-2.5 h-2.5 md:w-4 md:h-4"
-              alt="Location"
-            />
-            <span className="text-xs md:text-base  lg:text-xl">Dubai</span>
-          </div>
+      <div className="bg-white flex flex-col justify-between w-full px-4 space-y-1 ">
+        <div className="bg-white min-h-10 md:min-h-14 lg:min-h-16">
+          <h4 className="text-xs md:text-base  lg:text-xl line-clamp-2 font-bold text-center ">
+            {item?.attName}
+          </h4>
         </div>
-      </div>
 
-      <div className="hidden md:block absolute bottom-2 md:bottom-2 bg-white mb-4">
-        <p className=" text-center text-xs md:text-base  lg:text-xl ">
-          <span className="text-yellow-700">
-            {`${finalPrice} ${currency}`}/-
-          </span>{" "}
-          per person
-        </p>
-        <div className="flex flex-wrap justify-center gap-4 text-xs sm:text-sm mt-0 px-2">
-          <div className="flex items-center gap-1">
-            <img src={ClockImage} className="w-4 h-4" alt="Clock" />
-            <span className="text-xs md:text-base  lg:text-lg">4 Days</span>
+        <div className="">
+          <div className="flex justify-between p-3">
+            <div className="text-red-500 line-through font-extrabold ">
+              {currRate
+                ? Number(currRate) * Number(item.gwtB2cAdultPrice)
+                : Number(item.gwtB2cAdultPrice)}
+
+              <span className="text-[10px]"> {currency}</span>
+            </div>
+            <div className="text-blue-950 font-extrabold ">
+              {currRate
+                ? Number(currRate) * Number(item.gwtAdultOfferPrice)
+                : Number(item.gwtAdultOfferPrice)}
+
+              <span className="text-[10px]"> {currency}</span>
+            </div>
           </div>
-          {/* <div className="flex items-center gap-1">
-            <img src={GroupImage} className="w-4 h-4" alt="Group" />
-            <span className="text-xs md:text-base  lg:text-lg">10+</span>
-          </div> */}
-          <div className="flex items-center gap-1">
-            <img src={LocationImage} className="w-3 h-3" alt="Location" />
-            <span className="text-xs md:text-base  lg:text-base"> Dubai</span>
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 text-xs sm:text-sm mb-1 mt-1">
+            <div className="flex items-center gap-1">
+              <img
+                src={LocationImage}
+                className="w-2.5 h-2.5 md:w-4 md:h-4"
+                alt="Location"
+              />
+              <span className="text-xs md:text-base  lg:text-xl">Dubai</span>
+            </div>
           </div>
         </div>
       </div>

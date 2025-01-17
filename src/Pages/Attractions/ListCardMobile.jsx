@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { imageurl } from "../../Components/Others/ApiUrls";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import parse from "html-react-parser";
 const ListCardMobile = (props) => {
   const { item, currRate } = props;
   const currentCurrency = useSelector((state) => state.authData);
@@ -31,34 +32,33 @@ const ListCardMobile = (props) => {
             </div>
 
             <div className="mb-4 mt-4 px-2">
-
-              <p className="text-slate-600 text-xs md:text-sm font-semibold text-center line-clamp-4"> 
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste explicabo repellat alias? Suscipit, vitae? Sequi?
+              <p className="text-slate-600 text-xs md:text-sm font-semibold text-center line-clamp-4">
+                {item.shortDescription && parse(item.shortDescription)}
               </p>
             </div>
 
             <div className="px-3 mb-2 flex justify-between">
-            <div className="flex justify-center items-center">
-            <h4 className="bg-[#00646f] text-xs md:text-sm text-primary rounded-pill py-1 px-3 mb-0 font-bold">
-                {currRate
-                  ? (
-                      Number(currRate) *
-                      Number(
+              <div className="flex justify-center items-center">
+                <h4 className="bg-[#00646f] text-xs md:text-sm text-primary rounded-pill py-1 px-3 mb-0 font-bold">
+                  {currRate
+                    ? (
+                        Number(currRate) *
+                        Number(
+                          loginData?.data?.userType === "b2b"
+                            ? item.gwtAdultOfferPrice
+                            : item.gwtB2cAdultPrice
+                        )
+                      ).toFixed(2)
+                    : Number(
                         loginData?.data?.userType === "b2b"
                           ? item.gwtAdultOfferPrice
                           : item.gwtB2cAdultPrice
-                      )
-                    ).toFixed(2)
-                  : Number(
-                      loginData?.data?.userType === "b2b"
-                        ? item.gwtAdultOfferPrice
-                        : item.gwtB2cAdultPrice
-                    ).toFixed(2)}
-                <span className="text-[9px] md:text-[10px] text-white">
-                  &nbsp; {currentCurrency.currency}
-                </span>
-              </h4>
-            </div>
+                      ).toFixed(2)}
+                  <span className="text-[9px] md:text-[10px] text-white">
+                    &nbsp; {currentCurrency.currency}
+                  </span>
+                </h4>
+              </div>
               <button
                 href="#"
                 className="btn btn-primary text-xs md:text-sm rounded-pill d-flex justify-content-center py-1 "

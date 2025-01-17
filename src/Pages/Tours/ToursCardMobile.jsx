@@ -17,6 +17,7 @@ const ToursCardMobile = (props) => {
             loading="lazy"
           />
         </div>
+
         <div className="blog-content rounded-bottom p-4">
           <div className="blog-date text-sm">
             {currRate

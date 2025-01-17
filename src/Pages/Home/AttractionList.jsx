@@ -11,36 +11,36 @@ import "swiper/css/pagination";
 
 const filtersForQuery = [
   {
-    title: "Tickets",
-    url: "/img/Two Tickets.svg",
+    title: "Theme park",
+    url: "/img/theme  park.svg",
   },
   {
-    title: "Combos",
-    url: "/img/Two Tickets.svg",
+    title: "Cruises and dinner",
+    url: "/img/cruise and dinner.svg",
   },
   {
-    title: "Theme Parks",
-    url: "/img/Roller Coaster.svg",
+    title: "Zoo and Aquariums",
+    url: "/img/zoo and aquariums.svg",
   },
   {
-    title: "Tours",
-    url: "/img/Tour Guide.svg",
+    title: "Snow activities",
+    url: "/img/snow activity.svg",
   },
   {
-    title: "Zoos",
-    url: "/img/Elephant.svg",
+    title: "Indoor activities",
+    url: "/img/indoor act.svg",
   },
   {
-    title: "Water Parks",
+    title: "Garden and parks",
     url: "/img/Outdoor Swimming Pool.svg",
   },
   {
-    title: "Museum",
-    url: "/img/Museum.svg",
+    title: "Water activities",
+    url: "/img/water activity.svg",
   },
   {
-    title: "Landmarks",
-    url: "/img/Frame 603.svg",
+    title: "City tours",
+    url: "/img/ciity tour.svg",
   },
 ];
 
@@ -117,7 +117,15 @@ const AttractionList = (props) => {
         </div>
 
         {/* static query filters  */}
-        <div className=" grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 md:gap-0  justify-between md:px-20 pb-16">
+
+        <div className="flex flex-col  items-center justify-center">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-black">
+            Top Things To Do
+          </h1>
+
+          <div className="w-64 h-1 bg-[#01b8cc]"></div>
+        </div>
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 md:gap-2  justify-between md:px-4 pb-16">
           {filtersForQuery.map((el) => {
             return (
               <div
@@ -125,16 +133,17 @@ const AttractionList = (props) => {
                 //   alert(`${el.title} Clicked  `);
                 // }}
                 onClick={() => handleFilterClick(el.title)}
-                className="border-1  flex py-2 px-3 md:px-3 sm:px-2 hover:scale-105 items-center hover:cursor-pointer border-blue-500  hover:border-[#C3F1F5] rounded-md justify-between "
-                style={{
-                  boxShadow:
-                    "rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em",
-                }}
+                className="flex flex-col items-center justify-center"
               >
-                <div className="flex justify-center items-center">
-                  <img src={el.url} alt="" srcset="" />
+                <div className="rounded-full bg-[#01b8cc] w-24 h-24 md:w-24 md:h-24 lg:w-24 lg:h-24 overflow-hidden flex items-center justify-center">
+                  <img
+                    src={el.url}
+                    alt=""
+                    className="w-full h-full object-contain p-4 bg-transparent"
+                  />
                 </div>
-                <p className="font-sans text-black text-sm md:text-md ">
+
+                <p className="font-sans text-wrap text-black text-sm md:text-sm lg:text-xs flex items-center justify-center mt-6 ">
                   {el.title}
                 </p>
               </div>

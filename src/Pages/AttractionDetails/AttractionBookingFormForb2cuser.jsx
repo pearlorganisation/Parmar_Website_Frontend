@@ -541,7 +541,7 @@ const AttractionBookingFormForb2cuser = (props) => {
       customerLastName: leadPassenger.lastname,
       bookCustomerEmail: leadPassenger.email,
       bookMobileNumber: leadPassenger.contact,
-      bookTotal:parseInt(payload.price),
+      bookTotal: parseInt(payload.price),
     };
     const postObject = {
       agencyId:
@@ -580,11 +580,10 @@ const AttractionBookingFormForb2cuser = (props) => {
       //  setisLoading(false);
     }
   }
-  
 
   const openLeaderPassengerModal = () => {
     Swal.fire({
-      title: 'Passenger Details',
+      title: "Passenger Details",
       html: `
      <style>
   .modal-content {
@@ -669,21 +668,21 @@ const AttractionBookingFormForb2cuser = (props) => {
         </form>
       </div>
     `,
-      showCancelButton: true,
-      confirmButtonText: 'Submit',
+      showCancelButton: false,
+      confirmButtonText: "Submit",
       preConfirm: () => {
         // Retrieve the values from the input fields
         const firstName = document.getElementById("firstName").value.trim();
         const lastName = document.getElementById("lastName").value.trim();
         const email = document.getElementById("email").value.trim();
         const phoneNumber = document.getElementById("phoneNumber").value.trim();
-    
+
         // Validation before closing the modal
         if (!firstName || !lastName || !email || !phoneNumber) {
           Swal.showValidationMessage("All fields are required!");
           return false; // Prevent modal from closing
         }
-    
+
         return { firstName, lastName, email, phoneNumber }; // Pass data to `.then()` block
       },
     }).then((result) => {
@@ -691,7 +690,7 @@ const AttractionBookingFormForb2cuser = (props) => {
         // Process the confirmed data
         const passengerDetails = result.value; // Data returned from preConfirm
         console.log("Passenger Details:", passengerDetails);
-    
+
         const tempga4data = {
           item_id: attId,
           item_name: attractionName,
@@ -700,21 +699,22 @@ const AttractionBookingFormForb2cuser = (props) => {
             : Number(formData.bookTotal).toFixed(2),
           quantity: Number(formData.nofAdult) + Number(formData.nofChild),
         };
-    
+
         // alert(`Passenger Details: ${JSON.stringify(passengerDetails)}`);
-        postApi(passengerDetails, tempga4data)
+        postApi(passengerDetails, tempga4data);
         // Swal.fire('Success!', 'Details saved successfully.', 'success');
       } else {
         console.log("Modal dismissed");
       }
     });
-    
   };
 
   function handleCheckout() {
-    if((Number(formData.nofAdult) +Number(formData.nofChild)) > 0 && (formData.travelDate != ""))
-        openLeaderPassengerModal();
-   
+    if (
+      Number(formData.nofAdult) + Number(formData.nofChild) > 0 &&
+      formData.travelDate != ""
+    )
+      openLeaderPassengerModal();
   }
 
   const isResourceOrAttIdMatched =
@@ -722,19 +722,19 @@ const AttractionBookingFormForb2cuser = (props) => {
 
   return (
     <Fragment>
-      {showMofCartModel === true && (
+      {showMofCartModel && (
         <MofAddCartModel mofData={mofResData} onCloseModel={onCloseModel} />
       )}
-      <div className="p-3 ">
+      <div className="p-3">
         <div className="font-bold border-b-2 border-gray-200 mb-3">
-          <h3 className="text-xl md:text-3xl text-capitalize ">
-            Book<span className="text-primary"> Here </span>
+          <h3 className="text-xl sm:text-2xl md:text-3xl text-capitalize">
+            Book <span className="text-pink-500">Here</span>
           </h3>
         </div>
 
         {attId === 147 && (
-          <div className="flex gap-2 w-full">
-            <div className="form-group">
+          <div className="flex flex-col sm:flex-row gap-2 w-full">
+            <div className="form-group w-full">
               <TextInput
                 name="firstName"
                 label="First Name"
@@ -744,7 +744,7 @@ const AttractionBookingFormForb2cuser = (props) => {
                 <span className="text-red-500">{errors.firstName}</span>
               )}
             </div>
-            <div className="form-group">
+            <div className="form-group w-full">
               <TextInput
                 name="lastName"
                 label="Last Name"
@@ -757,7 +757,7 @@ const AttractionBookingFormForb2cuser = (props) => {
           </div>
         )}
 
-        <div className="form-group">
+        <div className="form-group w-full">
           <SelectInput
             label="Select Ticket"
             options={attractionTickets}
@@ -768,7 +768,7 @@ const AttractionBookingFormForb2cuser = (props) => {
           )}
         </div>
 
-        <div className="mt-3 ">
+        <div className="mt-3 flex flex-col gap-3">
           <CountButton
             label="Adult"
             name="nofAdult"
@@ -780,36 +780,17 @@ const AttractionBookingFormForb2cuser = (props) => {
               ticketPrice?.adultPrice === 0
             }
           />
-
-          {isResourceOrAttIdMatched
-            ? ticketPrice && (
-                <div className="text-[#1f2e4e]">
-                  {currRate
-                    ? (
-                        Number(currRate) * Number(ticketPrice.adultPrice)
-                      ).toFixed(2)
-                    : Number(ticketPrice.adultPrice).toFixed(2)}{" "}
-                  {currentCurrency?.currency}
-                </div>
-              )
-            : ticketPrice &&
-              (ticketPrice.adultPrice == 0 ? (
-                <span className="text-[10px] text-red-500">
-                  Ticket Not Available
-                </span>
-              ) : (
-                <div className="text-[#1f2e4e]">
-                  {currRate
-                    ? (
-                        Number(currRate) * Number(ticketPrice.adultPrice)
-                      ).toFixed(2)
-                    : Number(ticketPrice.adultPrice).toFixed(2)}{" "}
-                  {currentCurrency?.currency}
-                </div>
-              ))}
+          <PriceDisplay
+            isResourceOrAttIdMatched={isResourceOrAttIdMatched}
+            price={ticketPrice?.adultPrice}
+            currRate={currRate}
+            currency={currentCurrency?.currency}
+          />
         </div>
-        <hr className="solid"></hr>
-        <div className="mt-3">
+
+        <hr className="my-3 border-gray-300" />
+
+        <div className="mt-3 flex flex-col gap-3">
           <CountButton
             label="Child"
             name="nofChild"
@@ -821,36 +802,15 @@ const AttractionBookingFormForb2cuser = (props) => {
               ticketPrice?.childPrice === 0
             }
           />
-          {isResourceOrAttIdMatched
-            ? ticketPrice && (
-                <div className="text-[#1f2e4e]">
-                  {currRate
-                    ? (
-                        Number(currRate) * Number(ticketPrice.childPrice)
-                      ).toFixed(2)
-                    : Number(ticketPrice.childPrice).toFixed(2)}{" "}
-                  {currentCurrency?.currency}
-                </div>
-              )
-            : ticketPrice &&
-              (ticketPrice.childPrice == 0 ? (
-                <span className="text-[10px] text-red-500">
-                  Ticket Not Available
-                </span>
-              ) : (
-                <div className="text-[#1f2e4e]">
-                  {currRate
-                    ? (
-                        Number(currRate) * Number(ticketPrice.childPrice)
-                      ).toFixed(2)
-                    : Number(ticketPrice.childPrice).toFixed(2)}{" "}
-                  {currentCurrency?.currency}
-                </div>
-              ))}
+          <PriceDisplay
+            isResourceOrAttIdMatched={isResourceOrAttIdMatched}
+            price={ticketPrice?.childPrice}
+            currRate={currRate}
+            currency={currentCurrency?.currency}
+          />
         </div>
-        <hr className="solid"></hr>
 
-        <div className="form-group w-full">
+        <div className="form-group w-full mt-3">
           <DateInput
             label="Select Date"
             minDate={new Date()}
@@ -861,90 +821,108 @@ const AttractionBookingFormForb2cuser = (props) => {
             <span className="text-red-500">{errors.travelDate}</span>
           )}
         </div>
+
         {slotIsLoading && <div>Loading Please Wait</div>}
-        {mofError !== null && mofError}
+        {mofError && <div>{mofError}</div>}
 
-        {burjTicketTimeSlot !== null && (
-          <div className="flex flex-wrap justify-between">
-            {burjTicketTimeSlot.map((item, index) => (
-              <div key={index}>
-                <TimeSlotButton
-                  name={
-                    item.startDateTime.slice(11, -3) +
-                    "-" +
-                    item.endDateTime.slice(11, -3) +
-                    "(" +
-                    item.available +
-                    ")"
-                  }
-                  isSeleted={
-                    item.eventID == burjTicketSelected?.eventID ? true : false
-                  }
-                  onClick={() => selectedBurjTimeSlot(item)} // Wrap in an arrow function
-                />
-              </div>
-            ))}
-          </div>
+        {burjTicketTimeSlot && (
+          <TimeSlotSection
+            title="Burj Khalifa Time Slots"
+            timeSlots={burjTicketTimeSlot}
+            selectedSlot={burjTicketSelected}
+            onSelectSlot={selectedBurjTimeSlot}
+          />
         )}
 
-        {mofTicketTimeslot !== null && (
-          <div className="flex flex-wrap justify-between">
-            {mofTicketTimeslot.length > 0 ? (
-              mofTicketTimeslot.map((item, index) => (
-                <div key={index}>
-                  <TimeSlotButton
-                    name={
-                      item.dateTimeFrom.slice(11, -13) +
-                      "-" +
-                      item.dateTimeTo.slice(11, -13)
-                    }
-                    isSeleted={
-                      item.performanceId == mofTimeslotSelected?.performanceId
-                        ? true
-                        : false
-                    }
-                    onClick={() => selectedMofTimeSlot(item)}
-                  />
-                </div>
-              ))
-            ) : (
-              <div>No Time Slot Available</div>
-            )}
-          </div>
+        {mofTicketTimeslot && (
+          <TimeSlotSection
+            title="Mof Time Slots"
+            timeSlots={mofTicketTimeslot}
+            selectedSlot={mofTimeslotSelected}
+            onSelectSlot={selectedMofTimeSlot}
+          />
         )}
 
-        <h3 className="text-xl md:text-3xl text-capitalize font-bold ">
-          Total :
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mt-4">
+          Total:{" "}
           <span className="text-primary">
-            {" "}
             {currRate
               ? (Number(currRate) * Number(formData.bookTotal)).toFixed(2)
               : Number(formData.bookTotal).toFixed(2)}{" "}
-            {currentCurrency?.currency}{" "}
+            {currentCurrency?.currency}
           </span>
         </h3>
 
-        <div className="flex flex-row justify-between mt-5">
+        <div className="flex flex-col sm:flex-row justify-between mt-5 gap-3 mb-20">
           <button
-            className="btn btn-primary rounded "
-            onClick={() => {
-              handleCheckout();
-            }}
-            // disabled={Object.keys(errors).length > 0}
+            className="btn btn-primary rounded w-full sm:w-auto"
+            onClick={handleCheckout}
           >
             Checkout
           </button>
 
           <button
-            className="btn btn-primary rounded "
+            className="btn btn-primary rounded w-full sm:w-auto"
             onClick={() => addToCart("cart")}
-            // disabled={Object.keys(errors).length > 0}
           >
-            Add to cart
+            Add to Cart
           </button>
         </div>
+      </div>
+    </Fragment>
+  );
+};
 
-        {/* <div className="flex justify-end mt-5">
+const PriceDisplay = ({
+  isResourceOrAttIdMatched,
+  price,
+  currRate,
+  currency,
+}) => {
+  if (!price) return null;
+  return (
+    <div className="text-[#1f2e4e] text-sm">
+      {isResourceOrAttIdMatched && price > 0 ? (
+        currRate ? (
+          (Number(currRate) * Number(price)).toFixed(2)
+        ) : (
+          Number(price).toFixed(2)
+        )
+      ) : (
+        <span className="text-[10px] text-red-500">Ticket Not Available</span>
+      )}{" "}
+      {currency}
+    </div>
+  );
+};
+
+const TimeSlotSection = ({ title, timeSlots, selectedSlot, onSelectSlot }) => (
+  <div className="mt-4">
+    <h4 className="text-lg font-semibold">{title}</h4>
+    <div className="flex flex-wrap gap-2">
+      {timeSlots.length > 0 ? (
+        timeSlots.map((item, index) => (
+          <TimeSlotButton
+            key={index}
+            name={`${item.dateTimeFrom.slice(11, -3)}-${item.dateTimeTo.slice(
+              11,
+              -3
+            )}`}
+            isSeleted={item.performanceId === selectedSlot?.performanceId}
+            onClick={() => onSelectSlot(item)}
+          />
+        ))
+      ) : (
+        <div className="text-sm text-red-500">No Time Slot Available</div>
+      )}
+    </div>
+  </div>
+);
+
+export default AttractionBookingFormForb2cuser;
+
+{
+  /* <div className="flex justify-end mt-5">
           <div>
             <button
               className="btn btn-primary rounded "
@@ -954,10 +932,5 @@ const AttractionBookingFormForb2cuser = (props) => {
               Add to cart
             </button>
           </div>
-        </div> */}
-      </div>
-    </Fragment>
-  );
-};
-
-export default AttractionBookingFormForb2cuser;
+        </div> */
+}
