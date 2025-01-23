@@ -509,213 +509,252 @@ const AttractionBookingFormForb2cuser = (props) => {
     setshowMofCartModel(false);
   };
 
-  async function postApi(leadPassenger, payload) {
-    if (window.dataLayer) {
-      window.dataLayer.push({ ecommerce: null }); // Clear the previous ecommerce object.
-      window.dataLayer.push({
-        event: "begin_checkout",
-        ecommerce: {
-          currency: "AED",
-          value: payload?.price,
-
-          items: [payload],
+   const openLeaderPassengerModal = () => {
+      Swal.fire({
+        title: 'Passenger Details',
+        html: `
+       <style>
+    .modal-content {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 16px; /* Base font size for desktop and tablet */
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+    .form-input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px; /* Prevents zoom on mobile */
+    }
+    .submit-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+    @media (max-width: 480px) {
+      .modal-content {
+        width: 95%;
+        padding: 15px;
+        font-size: 14px; /* Smaller font size for mobile */
+      }
+      .form-input {
+        font-size: 14px; /* Smaller font size for mobile inputs */
+      }
+      .submit-btn {
+        font-size: 14px; /* Smaller font size for mobile button */
+      }
+    }
+    @media (min-width: 1024px) {
+      .modal-content {
+        font-size: 18px; /* Larger font size for desktop */
+      }
+      .form-input {
+        font-size: 18px; /* Larger font size for desktop inputs */
+      }
+      .submit-btn {
+        font-size: 18px; /* Larger font size for desktop button */
+      }
+    }
+  </style>
+        <div class="modal-content">
+          <form id="leaderPassengerForm">
+            <div class="form-group">
+              <label for="firstName" class="form-label">First Name:</label>
+              <input type="text" id="firstName" name="firstName" required class="form-input">
+            </div>
+            <div class="form-group">
+              <label for="lastName" class="form-label">Last Name:</label>
+              <input type="text" id="lastName" name="lastName" required class="form-input">
+            </div>
+            <div class="form-group">
+              <label for="phoneNumber" class="form-label">Phone Number:</label>
+              <input type="tel" id="phoneNumber" name="phoneNumber" required class="form-input">
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" id="email" name="email" required class="form-input">
+            </div>
+          </form>
+        </div>
+      `,
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        preConfirm: () => {
+          // Retrieve the values from the input fields
+          const firstName = document.getElementById("firstName").value.trim();
+          const lastName = document.getElementById("lastName").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const phoneNumber = document.getElementById("phoneNumber").value.trim();
+      
+          // Validation before closing the modal
+          if (!firstName || !lastName || !email || !phoneNumber) {
+            Swal.showValidationMessage("All fields are required!");
+            return false; // Prevent modal from closing
+          }
+      
+          return { firstName, lastName, email, phoneNumber }; // Pass data to `.then()` block
         },
-      });
-    } else {
-      console.warn("dataLayer is not defined");
-    }
-    const envId = attId == 45 ? 21457 : 54154;
-    const tempBookObject = {
-      agencyId:
-        loginData?.data?.userType === "b2b" && loginData?.data?.userId
-          ? loginData?.data?.userId
-          : "",
-      bookB2bId:
-        loginData?.data?.userType === "b2b" && loginData?.data?.userId
-          ? loginData?.data?.userId
-          : "",
-      bookB2cId: loginData?.data?.userId ? loginData?.data?.userId : 0,
-      platformId: 2,
-      envId: envId,
-      bookCustomerName: leadPassenger.firstname,
-      customerLastName: leadPassenger.lastname,
-      bookCustomerEmail: leadPassenger.email,
-      bookMobileNumber: leadPassenger.contact,
-      bookTotal:parseInt(payload.price),
-    };
-    const postObject = {
-      agencyId:
-        loginData?.data?.userType === "b2b" && loginData?.data?.userId
-          ? loginData?.data?.userId
-          : "",
-      bookB2bId:
-        loginData?.data?.userType === "b2b" && loginData?.data?.userId
-          ? loginData?.data?.userId
-          : "",
-      paymentB2cId: loginData?.data?.userId ? loginData?.data?.userId : 0,
-      platformId: 2,
-      envId: envId,
-      paymentRemarks: leadPassenger?.firstname || "First Name",
-      paymentAmount: parseInt(payload?.price) || 0,
-      secretKey: secretKey,
-      tempRef: loginData?.data?.userId ? loginData?.data?.userId : tempId,
-      temporaryBookingDto: tempBookObject,
-      successUrl: `https://www.travelpack365.com/ticket-booking-status/`,
-      failureUrl: `https://www.travelpack365.com/ticket-booking-status/`,
-    };
-
-    try {
-      const response = await instance.post(
-        "/setNetworkPaymentsDetailTvlPack",
-        postObject
-      );
-
-      console.log(response.data);
-      //  setisLoading(false);
-      if (response.data.paymentUrl) {
-        window.location.replace(response.data.paymentUrl);
-      }
-    } catch (error) {
-      console.log(error);
-      //  setisLoading(false);
-    }
-  }
-  
-
-  const openLeaderPassengerModal = () => {
-    Swal.fire({
-      title: 'Passenger Details',
-      html: `
-     <style>
-  .modal-content {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    font-size: 16px; /* Base font size for desktop and tablet */
-  }
-  .form-group {
-    margin-bottom: 15px;
-  }
-  .form-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-  }
-  .form-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px; /* Prevents zoom on mobile */
-  }
-  .submit-btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-  }
-  @media (max-width: 480px) {
-    .modal-content {
-      width: 95%;
-      padding: 15px;
-      font-size: 14px; /* Smaller font size for mobile */
-    }
-    .form-input {
-      font-size: 14px; /* Smaller font size for mobile inputs */
-    }
-    .submit-btn {
-      font-size: 14px; /* Smaller font size for mobile button */
-    }
-  }
-  @media (min-width: 1024px) {
-    .modal-content {
-      font-size: 18px; /* Larger font size for desktop */
-    }
-    .form-input {
-      font-size: 18px; /* Larger font size for desktop inputs */
-    }
-    .submit-btn {
-      font-size: 18px; /* Larger font size for desktop button */
-    }
-  }
-</style>
-      <div class="modal-content">
-        <form id="leaderPassengerForm">
-          <div class="form-group">
-            <label for="firstName" class="form-label">First Name:</label>
-            <input type="text" id="firstName" name="firstName" required class="form-input">
-          </div>
-          <div class="form-group">
-            <label for="lastName" class="form-label">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" required class="form-input">
-          </div>
-          <div class="form-group">
-            <label for="phoneNumber" class="form-label">Phone Number:</label>
-            <input type="tel" id="phoneNumber" name="phoneNumber" required class="form-input">
-          </div>
-          <div class="form-group">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" id="email" name="email" required class="form-input">
-          </div>
-        </form>
-      </div>
-    `,
-      showCancelButton: true,
-      confirmButtonText: 'Submit',
-      preConfirm: () => {
-        // Retrieve the values from the input fields
-        const firstName = document.getElementById("firstName").value.trim();
-        const lastName = document.getElementById("lastName").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const phoneNumber = document.getElementById("phoneNumber").value.trim();
-    
-        // Validation before closing the modal
-        if (!firstName || !lastName || !email || !phoneNumber) {
-          Swal.showValidationMessage("All fields are required!");
-          return false; // Prevent modal from closing
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Process the confirmed data
+          const passengerDetails = result.value; // Data returned from preConfirm
+          console.log("Passenger Details:", passengerDetails);
+      
+          const tempga4data = {
+            item_id: attId,
+            item_name: attractionName,
+            price: currRate
+              ? (Number(currRate) * Number(formData.bookTotal)).toFixed(2)
+              : Number(formData.bookTotal).toFixed(2),
+            quantity: Number(formData.nofAdult) + Number(formData.nofChild),
+          };
+      
+          console.log(`Passenger Details: ${JSON.stringify(passengerDetails)}`);
+          postApi(passengerDetails, tempga4data)
+          // Swal.fire('Success!', 'Details saved successfully.', 'success');
+        } else {
+          console.log("Modal dismissed");
         }
+      });
+      
+    };
+  
+     async function postApi(leadPassenger, payload) {
+        if (window.dataLayer) {
+          window.dataLayer.push({ ecommerce: null }); // Clear the previous ecommerce object.
+          window.dataLayer.push({
+            event: "begin_checkout",
+            ecommerce: {
+              currency: "AED",
+              value: payload?.price,
     
-        return { firstName, lastName, email, phoneNumber }; // Pass data to `.then()` block
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Process the confirmed data
-        const passengerDetails = result.value; // Data returned from preConfirm
-        console.log("Passenger Details:", passengerDetails);
+              items: [payload],
+            },
+          });
+        } else {
+          console.warn("dataLayer is not defined");
+        }
+        // const envId =  21457 ;
+        // const tempBookObject = {
+        //   agencyId:
+        //     loginData?.data?.userType === "b2b" && loginData?.data?.userId
+        //       ? loginData?.data?.userId
+        //       : "",
+        //   bookB2bId:
+        //     loginData?.data?.userType === "b2b" && loginData?.data?.userId
+        //       ? loginData?.data?.userId
+        //       : "",
+        //   bookB2cId: loginData?.data?.userId ? loginData?.data?.userId : 0,
+        //   platformId: 2,
+        //   envId: envId,
+        //   bookCustomerName: leadPassenger.firstname,
+        //   customerLastName: leadPassenger.lastname,
+        //   bookCustomerEmail: leadPassenger.email,
+        //   bookMobileNumber: leadPassenger.contact,
+        //   bookTotal:parseInt(payload.price),
+        // };
+        // const postObject = {
+        //   agencyId:
+        //     loginData?.data?.userType === "b2b" && loginData?.data?.userId
+        //       ? loginData?.data?.userId
+        //       : "",
+        //   bookB2bId:
+        //     loginData?.data?.userType === "b2b" && loginData?.data?.userId
+        //       ? loginData?.data?.userId
+        //       : "",
+        //   paymentB2cId: loginData?.data?.userId ? loginData?.data?.userId : 0,
+        //   platformId: 2,
+        //   envId: envId,
+        //   paymentRemarks: leadPassenger?.firstname || "First Name",
+        //   paymentAmount: parseInt(payload?.price) || 0,
+        //   secretKey: secretKey,
+        //   tempRef: loginData?.data?.userId ? loginData?.data?.userId : tempId,
+        //   temporaryBookingDto: tempBookObject,
+        //   successUrl: `https://www.travelpack365.com/ticket-booking-status/`,
+        //   failureUrl: `https://www.travelpack365.com/ticket-booking-status/`,
+        // };
     
-        const tempga4data = {
-          item_id: attId,
-          item_name: attractionName,
-          price: currRate
-            ? (Number(currRate) * Number(formData.bookTotal)).toFixed(2)
-            : Number(formData.bookTotal).toFixed(2),
-          quantity: Number(formData.nofAdult) + Number(formData.nofChild),
-        };
+        const postObject = {
+          "bookingType": 1,
+          "firstName": leadPassenger.firstname,
+          "lastName": leadPassenger.lastname,
+          "platformId": 2,
+          "userType": 3,
+          "eventtypeId": null,
+          "resourceID": null,
+          "passengerName": leadPassenger.firstName +" " +leadPassenger.lastName, 
+          "emailId": leadPassenger.email,
+          "contactNumber": leadPassenger.contact,
+          "ticketTypeId": attId,
+          "nofAdult": 1,
+          "nofChild": 0,
+          "bookAdultPrice":ticketPrice?.adultPrice,
+          "bookChildPrice": ticketPrice?.childPrice,
+          "travelDate": formData.travelDate,
+          "bookPaymentMode": "1",
+          "bookTotal": currRate
+          ? (Number(currRate) * Number(formData.bookTotal)).toFixed(2)
+          : Number(formData.bookTotal).toFixed(2),
+          "bookingAddon": "",
+          "errorMessage": "",
+          "nofPassanger": formData.nofPassanger,
+          "pickupLocation": "",
+          "childAvailCount": Number(formData.nofAdult),
+          "adultAvailCount": Number(formData.nofChild),
+          "pickupTime": "",
+          "transferPrice": "",
+          "vehicleType": "",
+          "sharedOrPrivate": "",
+          "tktName": attractionName,
+          "secretKey": secretKey,
+          "ticketInventoryType": 1,
+          "tempRef":loginData?.data?.userId ? loginData?.data?.userId : tempId,
+          "b2cId": 0,
+          "bookB2bId": 0,
+          "attName": attractionName,
+          "attractionId": attId
+        } 
     
-        // alert(`Passenger Details: ${JSON.stringify(passengerDetails)}`);
-        postApi(passengerDetails, tempga4data)
-        // Swal.fire('Success!', 'Details saved successfully.', 'success');
-      } else {
-        console.log("Modal dismissed");
+        try {
+          const response = await instance.post(
+            "/setNetworkPaymentsDetailTvlPack",
+            postObject
+          );
+    
+          console.log(response.data);
+          //  setisLoading(false);
+          if (response.data.paymentUrl) {
+            window.location.replace(response.data.paymentUrl);
+          }
+        } catch (error) {
+          console.log(error);
+          //  setisLoading(false);
+        }
       }
-    });
-    
-  };
-
-  function handleCheckout() {
-    if((Number(formData.nofAdult) +Number(formData.nofChild)) > 0 && (formData.travelDate != ""))
-        openLeaderPassengerModal();
-   
-  }
+    function handleCheckout() {
+      if((Number(formData.nofAdult) +Number(formData.nofChild)) > 0 && (formData.travelDate != ""))
+          openLeaderPassengerModal();
+     
+    }
 
   const isResourceOrAttIdMatched =
     (formData?.resourceID != null && formData?.resourceID != 0) || attId == 147;
