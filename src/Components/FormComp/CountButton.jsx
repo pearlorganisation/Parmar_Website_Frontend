@@ -25,7 +25,7 @@ const CountButton = ({ label, value, onChange, name, disabled }) => {
           type="button"
           onClick={handleDecrement}
           className="bg-gray-200 p-1 rounded disabled:opacity-50"
-          disabled={disabled || value <= 0}
+          disabled={disabled}
         >
           <FaMinus />
         </button>

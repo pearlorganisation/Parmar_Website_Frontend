@@ -61,15 +61,15 @@ const ToursCard = (props) => {
         <div className="flex justify-between gap-4 mt-0">
           <div className="text-red-500 line-through font-extrabold text-sm md:text-base lg:text-lg">
             {currRate
-              ? Number(currRate) * Number(item.tourPrice)
-              : Number(item.tourPrice)}
+              ? (Number(currRate) * Number(item.tourPrice)).toFixed(2)
+              : Number(item.tourPrice).toFixed(2)}
 
             <span className="text-[10px]"> {currentCurrency.currency}</span>
           </div>
           <div className="text-blue-950 font-extrabold text-sm md:text-base lg:text-lg">
             {currRate
-              ? Number(currRate) * Number(item.tourPrice)
-              : Number(item.tourPrice)}
+              ? (Number(currRate) * Number(item.tourPrice)).toFixed(2)
+              : Number(item.tourPrice).toFixed(2)}
 
             <span className="text-[8px] md:text-[9px] lg:text-[10px] ">
               {currentCurrency.currency}

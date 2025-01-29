@@ -563,11 +563,12 @@ const AttractionBookingForm = (props) => {
             name="nofAdult"
             value={formData.nofAdult}
             onChange={handleChange}
-            disabled={
-              formData?.resourceID === null &&
-              attId !== 147 &&
-              ticketPrice?.adultPrice === 0
-            }
+            // disabled={
+            //   formData?.resourceID === null &&
+            //   attId !== 147 &&
+            //   ticketPrice?.adultPrice === 0
+            // }
+            disabled={attractionTickets?.[1]?.adultAvailCount > 0}
           />
           {errors.noOfTickets &&
             ticketPrice?.adultPrice !== 0 &&
@@ -609,11 +610,12 @@ const AttractionBookingForm = (props) => {
             name="nofChild"
             value={formData.nofChild}
             onChange={handleChange}
-            disabled={
-              formData?.resourceID === null &&
-              attId !== 147 &&
-              ticketPrice?.childPrice === 0
-            }
+            // disabled={
+            //   formData?.resourceID === null &&
+            //   attId !== 147 &&
+            //   ticketPrice?.childPrice === 0
+            // }
+            disabled={attractionTickets?.[1]?.adultAvailCount > 0}
           />
           {isResourceOrAttIdMatched
             ? ticketPrice && (

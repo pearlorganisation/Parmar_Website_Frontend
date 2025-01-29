@@ -32,6 +32,10 @@ const AttractionBookingFormForb2cuser = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loginData = useSelector((state) => state.authData);
+  // const [availCounts, setAvailCounts] = useState({
+  //   adultAvailCount: attractionTickets?.[1]?.adultAvailCount || 0,
+  //   childAvailCount: attractionTickets?.[1]?.childAvailCount || 0,
+  // });
   let tempId = localStorage.getItem("tempIdtpb2cuniqueid");
   const xmlRes = keydata();
   // const tempId = getFingerprint();
@@ -69,6 +73,8 @@ const AttractionBookingFormForb2cuser = (props) => {
     nofChild: 0,
     bookAdultPrice: ticketPrice?.adultPrice,
     bookChildPrice: ticketPrice?.childPrice,
+    // childAvailCount: ticketPrice?.childAvailCount,
+    // adultAvailCount: ticketPrice?.adultAvailCount,
     travelDate: "",
     bookPaymentMode: "1",
     bookTotal: 0,
@@ -134,6 +140,9 @@ const AttractionBookingFormForb2cuser = (props) => {
       setticketPrice({
         adultPrice: Math.round(res.data.adultPrice),
         childPrice: Math.round(res.data.childPrice),
+
+        childAvailCount: res.data.childAvailCount,
+        adultAvailCount: res.data.adultAvailCount,
       });
 
       setFormData((prevData) => ({
@@ -329,7 +338,7 @@ const AttractionBookingFormForb2cuser = (props) => {
     }
     if (!formData.ticketTypeId)
       newErrors.ticketTypeId = "Please select a ticket type.";
-    if (formData.nofAdult <= 0 && formData.nofChild <= 0)
+    if (formData.adultAvailCount <= 0 && formData.childAvailCount <= 0)
       newErrors.noOfTickets =
         "Please select at least one adult or child ticket.";
     if (!formData.travelDate)
@@ -768,47 +777,46 @@ const AttractionBookingFormForb2cuser = (props) => {
           )}
         </div>
 
-        <div className="mt-3 flex flex-col gap-3">
-          <CountButton
-            label="Adult"
-            name="nofAdult"
-            value={formData.nofAdult}
-            onChange={handleChange}
-            disabled={
-              formData?.resourceID === null &&
-              attId !== 147 &&
-              ticketPrice?.adultPrice === 0
-            }
-          />
-          <PriceDisplay
-            isResourceOrAttIdMatched={isResourceOrAttIdMatched}
-            price={ticketPrice?.adultPrice}
-            currRate={currRate}
-            currency={currentCurrency?.currency}
-          />
-        </div>
+        {attractionTickets && (
+          <>
+            <div className="mt-3 flex flex-col gap-3">
+              <CountButton
+                label="Adult"
+                name="nofAdult"
+                value={formData.nofAdult}
+                onChange={handleChange}
+                disabled={attractionTickets?.[1]?.adultAvailCount <= 0}
+              />
+              <PriceDisplay
+                isResourceOrAttIdMatched={isResourceOrAttIdMatched}
+                price={ticketPrice?.adultPrice}
+                disabled={attractionTickets?.[1]?.adultAvailCount <= 0}
+                currRate={currRate}
+                currency={currentCurrency?.currency}
+              />
+            </div>
 
-        <hr className="my-3 border-gray-300" />
+            <hr className="my-3 border-gray-300" />
 
-        <div className="mt-3 flex flex-col gap-3">
-          <CountButton
-            label="Child"
-            name="nofChild"
-            value={formData.nofChild}
-            onChange={handleChange}
-            disabled={
-              formData?.resourceID === null &&
-              attId !== 147 &&
-              ticketPrice?.childPrice === 0
-            }
-          />
-          <PriceDisplay
-            isResourceOrAttIdMatched={isResourceOrAttIdMatched}
-            price={ticketPrice?.childPrice}
-            currRate={currRate}
-            currency={currentCurrency?.currency}
-          />
-        </div>
+            <div className="mt-3 flex flex-col gap-3">
+              {console.log(ticketPrice?.nofChild, "no of child")}
+              <CountButton
+                label="Child"
+                name="nofChild"
+                value={formData.nofChild}
+                onChange={handleChange}
+                disabled={attractionTickets?.[1]?.childAvailCount <= 0}
+              />
+              <PriceDisplay
+                isResourceOrAttIdMatched={isResourceOrAttIdMatched}
+                price={ticketPrice?.childPrice}
+                currRate={currRate}
+                disabled={attractionTickets?.[1]?.childAvailCount <= 0}
+                currency={currentCurrency?.currency}
+              />
+            </div>
+          </>
+        )}
 
         <div className="form-group w-full mt-3">
           <DateInput
@@ -877,21 +885,22 @@ const PriceDisplay = ({
   isResourceOrAttIdMatched,
   price,
   currRate,
+  disabled,
   currency,
 }) => {
-  if (!price) return null;
+  // if (!price) return null;
   return (
     <div className="text-[#1f2e4e] text-sm">
-      {isResourceOrAttIdMatched && price > 0 ? (
+      {!disabled ? (
         currRate ? (
-          (Number(currRate) * Number(price)).toFixed(2)
+          (Number(currRate * price) ? currRate * price : 0).toFixed(2)
         ) : (
-          Number(price).toFixed(2)
+          (Number(price) ? price : 0).toFixed(2)
         )
       ) : (
         <span className="text-[10px] text-red-500">Ticket Not Available</span>
       )}{" "}
-      {currency}
+      {disabled ? "" : currency}
     </div>
   );
 };
